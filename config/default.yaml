@@ -1,0 +1,29 @@
+face_detection:
+  model: "hog"  # or "cnn" for better accuracy
+  tolerance: 0.6
+  min_face_size: 40
+  
+video_processing:
+  frame_interval: 30
+  scene_change_threshold: 30.0
+  max_faces_per_frame: 20
+
+output:
+  chip_size: [224, 224]
+  jpeg_quality: 85
+  use_base64: true
+  
+ipfs:
+  api_endpoint: "http://localhost:5001"
+  timeout: 30
+
+blockchain:
+  firefly_endpoint: "http://localhost:5000"
+  namespace: "facial-vision"
+
+face_recognition:
+  database_path: "data/face_db/faces.pkl"
+  similarity_threshold: 0.6
+  max_matches: 5
+  encoding_jitter: 1
+  min_faces_for_identity: 1

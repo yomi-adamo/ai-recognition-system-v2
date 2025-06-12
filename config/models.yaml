@@ -1,0 +1,23 @@
+models:
+  face_detection:
+    hog:
+      name: "HOG-based detector"
+      fast: true
+      gpu_required: false
+    cnn:
+      name: "CNN-based detector"
+      fast: false
+      gpu_required: true
+      
+  face_recognition:
+    dlib:
+      name: "dlib face recognition"
+      model_path: "data/models/dlib_face_recognition_resnet_model_v1.dat"
+    deepface:
+      name: "DeepFace models"
+      backends: ["VGG-Face", "Facenet", "OpenFace", "DeepFace", "DeepID"]
+      
+  feature_extraction:
+    landmarks:
+      model: "shape_predictor_68_face_landmarks.dat"
+      path: "data/models/"
