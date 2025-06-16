@@ -36,7 +36,7 @@ facial-vision/
 
 1. Clone the repository:
 ```bash
-cd /home/adamoyomi/code/facial-vision
+git clone https://github.com/yomi-adamo/ai-recognition-system-v2.git
 ```
 
 2. Create a virtual environment:
