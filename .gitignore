@@ -58,5 +58,79 @@ logs/
 *.tmp
 *.temp
 tmp/
-temp/venv
-venv310
+temp/
+data/temp/*
+!data/temp/.gitkeep
+
+# Clustering data
+data/cluster_registry.json
+data/face_db/
+
+# Test artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+*.pytest_cache
+
+# Coverage reports
+coverage.xml
+*.cover
+.hypothesis/
+
+# Documentation
+docs/_build/
+docs/_static/
+docs/_templates/
+
+# Package files
+*.whl
+*.tar.gz
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+
+# Linux
+.directory
+.Trash-*
+
+# Editor backups
+*.bak
+*.backup
+*~
+.#*
+
+# Project specific ignores
+facial-vision_*.log
+facial-vision_structured_*.json
+processing_log.json
+batch_results_*.json
+
+# Media files (keep test samples)
+*.mp4
+*.avi
+*.mov
+*.mkv
+!tests/data/samples/*
+
+# Face chips output
+person_*/
+cluster_*/
+
+# Model weights
+*.h5
+*.pt
+*.pth
+*.onnx
+*.pb
+
+# Virtual environments
+venv*/
+env*/
+.python-version

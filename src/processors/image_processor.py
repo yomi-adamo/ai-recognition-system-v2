@@ -1,350 +1,312 @@
 import json
-from pathlib import Path
-from typing import List, Dict, Any, Union, Optional
 import uuid
 from datetime import datetime
+from pathlib import Path
+from typing import Any, Dict, List, Optional, Union
 
-from src.core.face_detector import FaceDetector
-from src.core.face_recognizer import FaceRecognizer
-from src.core.metadata_extractor import MetadataExtractor
 from src.core.chip_generator import ChipGenerator
-from src.utils.logger import get_logger, timing_decorator
+from src.core.face_detector import FaceDetector
+from src.core.face_clusterer import FaceClusterer
+from src.core.metadata_extractor import MetadataExtractor
+from src.processors.media_processor_base import MediaProcessorBase
 from src.utils.config import get_config
+from src.utils.logger import get_facial_vision_logger, timing_decorator
 
-logger = get_logger(__name__)
+logger = get_facial_vision_logger(__name__)
 
 
-class ImageProcessor:
-    """Main processor that combines face detection, recognition, metadata extraction, and chip generation"""
-    
-    def __init__(self, enable_recognition: bool = True):
+class ImageProcessor(MediaProcessorBase):
+    """Image processor with face detection, clustering, and metadata extraction"""
+
+    def __init__(self, enable_clustering: bool = True):
         """
         Initialize processor with core components
-        
+
         Args:
-            enable_recognition: Whether to enable face recognition (default: True)
+            enable_clustering: Whether to enable face clustering (default: True)
         """
-        config = get_config()
+        super().__init__()
         
+        config = get_config()
+
         # Initialize components
         face_config = config.get_face_detection_config()
         self.face_detector = FaceDetector(
-            model=face_config.get('model', 'hog'),
-            tolerance=face_config.get('tolerance', 0.8),
-            min_face_size=face_config.get('min_face_size', 20)
+            backend=face_config.get("backend", "face_recognition"),
+            min_face_size=face_config.get("min_face_size", 40),
         )
-        
+
         self.metadata_extractor = MetadataExtractor()
         self.chip_generator = ChipGenerator()
-        
-        # Initialize face recognizer if enabled
-        self.enable_recognition = enable_recognition
-        self.face_recognizer = None
-        
-        if enable_recognition:
+
+        # Initialize face clusterer if enabled
+        self.enable_clustering = enable_clustering
+        self.face_clusterer = None
+
+        if enable_clustering:
             try:
-                self.face_recognizer = FaceRecognizer()
-                logger.info(f"Face recognition enabled: {len(self.face_recognizer)} known faces")
+                self.face_clusterer = FaceClusterer.create_from_config()
+                cluster_stats = self.face_clusterer.get_cluster_statistics()
+                logger.info(
+                    f"Face clustering enabled: {cluster_stats['total_clusters']} existing clusters"
+                )
             except Exception as e:
-                logger.warning(f"Could not initialize face recognizer: {e}")
-                self.enable_recognition = False
-        
-        logger.info(f"ImageProcessor initialized (recognition: {self.enable_recognition})")
-    
+                logger.warning(f"Could not initialize face clusterer: {e}")
+                self.enable_clustering = False
+
+        logger.info(f"ImageProcessor initialized (clustering: {self.enable_clustering})")
+
     @timing_decorator
-    def process_image(self, image_path: Union[str, Path], 
-                     output_dir: Optional[Union[str, Path]] = None,
-                     save_chips: bool = True,
-                     recognize_faces: Optional[bool] = None) -> List[Dict[str, Any]]:
+    def process_image(
+        self,
+        image_path: Union[str, Path],
+        output_dir: Optional[Union[str, Path]] = None,
+        save_chips: bool = True,
+        enable_clustering: Optional[bool] = None,
+        parent_id: Optional[str] = None,
+    ) -> Dict[str, Any]:
         """
-        Process a single image and return JSON objects for all detected faces
-        
+        Process a single image with face detection, clustering, and metadata extraction
+
         Args:
             image_path: Path to the image file
             output_dir: Directory to save face chips
             save_chips: Whether to save face chips to disk
-            recognize_faces: Override recognition setting for this call
-            
+            enable_clustering: Override clustering setting for this call
+            parent_id: Blockchain parent asset ID
+
         Returns:
-            List of dictionaries (one per face) with the required JSON format
+            Dictionary containing complete processing results with metadata and chips
         """
         image_path = Path(image_path)
-        
+
         if not image_path.exists():
             raise FileNotFoundError(f"Image not found: {image_path}")
-        
+
         logger.info(f"Processing image: {image_path}")
-        
-        # Determine if recognition should be used
-        use_recognition = recognize_faces if recognize_faces is not None else self.enable_recognition
-        use_recognition = use_recognition and self.face_recognizer is not None
-        
-        # Extract metadata
-        metadata = self.metadata_extractor.extract_metadata(image_path)
-        
-        # Detect faces
-        faces = self.face_detector.detect_faces(image_path)
-        logger.info(f"Detected {len(faces)} faces in {image_path.name}")
-        
-        if len(faces) == 0:
-            logger.warning(f"No faces detected in {image_path}")
-            return []
-        
-        # Generate parent ID for the original image
-        parent_id = str(uuid.uuid4())
-        
-        # Get face encodings for recognition if enabled
-        face_encodings = []
-        if use_recognition:
+
+        # Determine if clustering should be used
+        use_clustering = (
+            enable_clustering if enable_clustering is not None else self.enable_clustering
+        )
+        use_clustering = use_clustering and self.face_clusterer is not None
+
+        # Extract source file metadata
+        source_metadata = self.metadata_extractor.extract_metadata(image_path)
+
+        # Load image and detect faces
+        import cv2
+        image_array = cv2.imread(str(image_path))
+        if image_array is None:
+            raise ValueError(f"Could not load image: {image_path}")
+
+        face_detections = self.face_detector.detect(image_array)
+        logger.info(f"Detected {len(face_detections)} faces in {image_path.name}")
+
+        if len(face_detections) == 0:
+            logger.info(f"No faces detected in {image_path}")
+            return self._create_empty_result(source_metadata, image_path, parent_id)
+
+        # Perform clustering if enabled
+        cluster_ids = []
+        if use_clustering:
             try:
-                face_encodings = self.face_detector.get_face_encodings(image_path, faces)
-                logger.debug(f"Generated {len(face_encodings)} face encodings")
+                cluster_ids = self.face_clusterer.process_faces(image_array, face_detections)
+                logger.info(f"Assigned faces to clusters: {cluster_ids}")
             except Exception as e:
-                logger.warning(f"Could not generate face encodings: {e}")
-                use_recognition = False
-        
-        # Process each face
-        results = []
-        
+                logger.warning(f"Clustering failed: {e}")
+                use_clustering = False
+
+        # If clustering failed, assign sequential IDs
+        if not cluster_ids:
+            cluster_ids = [f"person_{i+1}" for i in range(len(face_detections))]
+
         # Create output directory if needed
         if save_chips and output_dir:
             output_dir = Path(output_dir)
             output_dir.mkdir(parents=True, exist_ok=True)
-        
-        for idx, face in enumerate(faces):
+
+        # Generate chips with clustering
+        chip_results = []
+        if save_chips and output_dir:
             try:
-                # Generate face chip
-                chip_output = None
-                if save_chips and output_dir:
-                    chip_output = output_dir / f"{image_path.stem}_face_{idx:03d}.jpg"
-                
-                chip_data = self.chip_generator.generate_chip(
-                    str(image_path),
-                    face['bbox'],
-                    output_path=chip_output
+                chip_results = self.chip_generator.generate_clustered_chips(
+                    image=image_array,
+                    face_detections=face_detections,
+                    cluster_ids=cluster_ids,
+                    output_dir=output_dir
                 )
-                
-                # Perform face recognition if enabled
-                identity = "unknown"
-                recognition_confidence = 0.0
-                recognition_data = {}
-                
-                if use_recognition and idx < len(face_encodings):
-                    try:
-                        recognition_result = self.face_recognizer.recognize_face(face_encodings[idx])
-                        identity = recognition_result.get('name', 'unknown')
-                        recognition_confidence = recognition_result.get('confidence', 0.0)
-                        
-                        # Include detailed recognition data
-                        recognition_data = {
-                            'recognition_confidence': recognition_confidence,
-                            'recognition_distance': recognition_result.get('distance', 1.0),
-                            'recognition_votes': recognition_result.get('votes', 0),
-                            'total_encodings': recognition_result.get('total_encodings', 0),
-                            'recognition_method': 'face_recognition_lib'
-                        }
-                        
-                        # Include top candidates if available
-                        if 'all_candidates' in recognition_result:
-                            recognition_data['candidates'] = recognition_result['all_candidates']
-                        
-                        logger.debug(f"Face {idx}: recognized as '{identity}' "
-                                   f"(confidence: {recognition_confidence:.2%})")
-                        
-                    except Exception as e:
-                        logger.warning(f"Recognition failed for face {idx}: {e}")
-                
-                # Create JSON object
-                face_json = self._create_face_json(
-                    chip_data=chip_data,
-                    face_info=face,
-                    metadata=metadata,
-                    parent_id=parent_id,
-                    source_file=image_path.name,
-                    identity=identity,
-                    recognition_data=recognition_data
-                )
-                
-                results.append(face_json)
-                
             except Exception as e:
-                logger.error(f"Error processing face {idx}: {e}")
+                logger.error(f"Failed to generate clustered chips: {e}")
+                chip_results = {}
+
+        # Create comprehensive metadata for each chip
+        chips_metadata = []
+        for i, (detection, cluster_id) in enumerate(zip(face_detections, cluster_ids)):
+            try:
+                # Get chip path if generated
+                chip_path = None
+                if cluster_id in chip_results and chip_results[cluster_id]:
+                    chip_path = chip_results[cluster_id][0].get("file_path")
+
+                # Create comprehensive chip metadata
+                chip_metadata = self.metadata_extractor.create_chip_metadata(
+                    source_file=image_path,
+                    chip_path=chip_path or f"chip_{i:03d}.jpg",
+                    face_bbox=detection.bbox,
+                    cluster_id=cluster_id,
+                    confidence=detection.confidence,
+                    parent_id=parent_id
+                )
+
+                # Add detection-specific data
+                chip_metadata.update({
+                    "landmarks": detection.landmarks,
+                    "face_area": detection.area,
+                    "face_center": detection.center,
+                })
+
+                chips_metadata.append(chip_metadata)
+
+            except Exception as e:
+                logger.error(f"Error creating metadata for face {i}: {e}")
                 continue
-        
-        logger.info(f"Successfully processed {len(results)} faces from {image_path.name}")
-        
-        # Update recognition statistics
-        if use_recognition and self.face_recognizer:
-            try:
-                self.face_recognizer.save_database()
-            except Exception as e:
-                logger.warning(f"Could not save recognition database: {e}")
-        
-        return results
-    
-    def _create_face_json(self, chip_data: Dict[str, Any], 
-                         face_info: Dict[str, Any],
-                         metadata: Dict[str, Any],
-                         parent_id: str,
-                         source_file: str,
-                         identity: str = "unknown",
-                         recognition_data: Dict[str, Any] = None) -> Dict[str, Any]:
-        """Create JSON object following the required schema"""
-        
-        # Get timestamp
-        timestamp = self.metadata_extractor.get_timestamp(metadata)
-        
-        # Get GPS if available
-        gps = self.metadata_extractor.get_gps_coordinates(metadata)
-        
-        # Get face bounds
-        top, right, bottom, left = face_info['bbox']
-        
-        # Build the JSON object
+
+        # Create final result structure
         result = {
-            "file": chip_data.get('base64', chip_data.get('file_path', '')),
+            "file": str(image_path),
             "type": "image",
-            "name": chip_data['name'],
+            "name": image_path.stem,
             "author": "facial-vision-system",
+            "timestamp": self.metadata_extractor.get_timestamp(source_metadata),
             "parentId": parent_id,
             "metadata": {
-                "timestamp": timestamp,
-                "confidence": face_info['confidence'],
-                "identity": identity,
-                "source_file": source_file,
-                "face_bounds": {
-                    "x": left,
-                    "y": top,
-                    "w": right - left,
-                    "h": bottom - top
-                }
+                "source_metadata": source_metadata,
+                "processing_stats": {
+                    "faces_detected": len(face_detections),
+                    "clusters_assigned": len(set(cluster_ids)) if cluster_ids else 0,
+                    "clustering_enabled": use_clustering,
+                    "chips_generated": len(chips_metadata),
+                },
+                "chips": chips_metadata,
             },
-            "topics": ["face", "biometric", "person"]
+            "topics": ["face_detected", "image_analysis"],
         }
-        
+
         # Add GPS if available
-        if gps:
-            result["metadata"]["gps"] = gps
-        
-        # Add camera info if available
-        if 'camera' in metadata:
-            result["metadata"]["camera"] = metadata['camera']
-        
-        # Add recognition data if available
-        if recognition_data:
-            result["metadata"].update(recognition_data)
-        
-        # Add chip file path if saved
-        if 'file_path' in chip_data:
-            result["chip_path"] = chip_data['file_path']
-        
+        gps_coords = self.metadata_extractor.get_gps_coordinates(source_metadata)
+        if gps_coords:
+            result["metadata"]["GPS"] = gps_coords
+
+        # Add device info if available
+        device_info = source_metadata.get("device")
+        if device_info:
+            result["metadata"]["device"] = device_info
+
+        logger.info(
+            f"Successfully processed {image_path.name}: "
+            f"{len(face_detections)} faces, {len(set(cluster_ids))} clusters"
+        )
+
         return result
-    
-    def add_known_face(self, name: str, image_path: Union[str, Path]) -> bool:
+
+    def _create_empty_result(
+        self, source_metadata: Dict[str, Any], image_path: Path, parent_id: Optional[str]
+    ) -> Dict[str, Any]:
+        """Create result structure for images with no faces detected"""
+        return {
+            "file": str(image_path),
+            "type": "image", 
+            "name": image_path.stem,
+            "author": "facial-vision-system",
+            "timestamp": self.metadata_extractor.get_timestamp(source_metadata),
+            "parentId": parent_id,
+            "metadata": {
+                "source_metadata": source_metadata,
+                "processing_stats": {
+                    "faces_detected": 0,
+                    "clusters_assigned": 0,
+                    "clustering_enabled": self.enable_clustering,
+                    "chips_generated": 0,
+                },
+                "chips": [],
+            },
+            "topics": ["image_analysis"],
+        }
+
+    def load_media(self, file_path: Path) -> Any:
+        """Load image file"""
+        import cv2
+        image = cv2.imread(str(file_path))
+        if image is None:
+            raise ValueError(f"Could not load image: {file_path}")
+        return image
+
+    def extract_frames(self, media: Any) -> List[Any]:
+        """Extract frames - for images, return single frame"""
+        return [media]
+
+    def process(self, input_path: Union[str, Path], **kwargs) -> Dict[str, Any]:
         """
-        Add a known face to the recognition database
+        Process method required by BaseProcessor
         
         Args:
-            name: Identity name
-            image_path: Path to reference image
+            input_path: Path to input file
+            **kwargs: Additional processing parameters
             
         Returns:
-            True if successful
+            Processing results dictionary
         """
-        if not self.face_recognizer:
-            logger.error("Face recognizer not available")
-            return False
-        
-        return self.face_recognizer.add_known_face(name, image_path)
-    
-    def remove_known_face(self, name: str) -> bool:
-        """
-        Remove a known face from the recognition database
-        
-        Args:
-            name: Identity name to remove
-            
-        Returns:
-            True if successful
-        """
-        if not self.face_recognizer:
-            logger.error("Face recognizer not available")
-            return False
-        
-        return self.face_recognizer.remove_face(name)
-    
-    def list_known_faces(self) -> List[Dict[str, Any]]:
-        """
-        Get list of all known faces
-        
-        Returns:
-            List of face information
-        """
-        if not self.face_recognizer:
-            return []
-        
-        return self.face_recognizer.list_known_faces()
-    
-    def get_recognition_stats(self) -> Dict[str, Any]:
-        """
-        Get face recognition statistics
-        
-        Returns:
-            Statistics dictionary
-        """
-        if not self.face_recognizer:
-            return {"error": "Recognition not available"}
-        
-        return self.face_recognizer.get_statistics()
-    
-    def save_recognition_database(self) -> bool:
-        """
-        Save the recognition database to disk
-        
-        Returns:
-            True if successful
-        """
-        if not self.face_recognizer:
-            return False
-        
-        return self.face_recognizer.save_database()
-    
-    def export_recognition_database(self, output_path: Union[str, Path]) -> bool:
-        """
-        Export recognition database metadata to JSON
-        
-        Args:
-            output_path: Path to save JSON file
-            
-        Returns:
-            True if successful
-        """
-        if not self.face_recognizer:
-            return False
-        
-        return self.face_recognizer.export_database_json(output_path)
-    
-    def batch_add_faces(self, faces_dict: Dict[str, List[Union[str, Path]]]) -> Dict[str, bool]:
-        """
-        Add multiple known faces in batch
-        
-        Args:
-            faces_dict: {name: [image_paths]}
-            
-        Returns:
-            Results dictionary
-        """
-        if not self.face_recognizer:
-            return {}
-        
-        return self.face_recognizer.add_multiple_faces(faces_dict)
-    
-    def save_results_to_json(self, results: List[Dict[str, Any]], 
-                           output_path: Union[str, Path]) -> None:
+        return self.process_image(input_path, **kwargs)
+
+    def get_cluster_statistics(self) -> Dict[str, Any]:
+        """Get clustering statistics"""
+        if not self.face_clusterer:
+            return {"error": "Clustering not available"}
+        return self.face_clusterer.get_cluster_statistics()
+
+    def save_results_to_json(
+        self, results: Dict[str, Any], output_path: Union[str, Path]
+    ) -> None:
         """Save processing results to JSON file"""
         output_path = Path(output_path)
-        
-        with open(output_path, 'w') as f:
+
+        with open(output_path, "w") as f:
             json.dump(results, f, indent=2)
+
+        logger.info(f"Saved processing results to {output_path}")
+
+    def batch_process_images(
+        self, image_paths: List[Union[str, Path]], output_dir: Union[str, Path]
+    ) -> List[Dict[str, Any]]:
+        """
+        Process multiple images in batch
+
+        Args:
+            image_paths: List of image paths to process
+            output_dir: Directory to save all outputs
+
+        Returns:
+            List of processing results
+        """
+        output_dir = Path(output_dir)
+        output_dir.mkdir(parents=True, exist_ok=True)
         
-        logger.info(f"Saved {len(results)} face results to {output_path}")
+        results = []
+        
+        for image_path in image_paths:
+            try:
+                logger.info(f"Processing {image_path}")
+                result = self.process_image(
+                    image_path=image_path,
+                    output_dir=output_dir,
+                    save_chips=True
+                )
+                results.append(result)
+                
+            except Exception as e:
+                logger.error(f"Failed to process {image_path}: {e}")
+                continue
+                
+        logger.info(f"Batch processed {len(results)} images")
+        return results

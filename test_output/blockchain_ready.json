@@ -1,0 +1,105 @@
+{
+  "file": "data/input/group.jpg",
+  "type": "image",
+  "name": "group",
+  "author": "facial-vision-system",
+  "parentId": null,
+  "metadata": {
+    "processing_stats": {
+      "faces_detected": 3,
+      "clusters_assigned": 1,
+      "clustering_enabled": true,
+      "chips_generated": 3
+    },
+    "chips": [
+      {
+        "file": "test_output/images/person_1/chip_002.jpg",
+        "type": "image",
+        "name": "chip_002",
+        "author": "facial-vision-system",
+        "timestamp": "2019-08-25T13:28:36",
+        "clusterId": "person_1",
+        "face_bounds": {
+          "x": 2686,
+          "y": 247,
+          "w": 385,
+          "h": 385
+        },
+        "confidence": 0.8075,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "deviceId": "Apple-iPhone-8",
+        "device": {
+          "manufacturer": "Apple",
+          "model": "iPhone 8",
+          "source": "exif",
+          "id": "Apple-iPhone-8"
+        }
+      },
+      {
+        "file": "test_output/images/person_1/chip_002.jpg",
+        "type": "image",
+        "name": "chip_002",
+        "author": "facial-vision-system",
+        "timestamp": "2019-08-25T13:28:36",
+        "clusterId": "person_1",
+        "face_bounds": {
+          "x": 1418,
+          "y": 241,
+          "w": 321,
+          "h": 321
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "deviceId": "Apple-iPhone-8",
+        "device": {
+          "manufacturer": "Apple",
+          "model": "iPhone 8",
+          "source": "exif",
+          "id": "Apple-iPhone-8"
+        }
+      },
+      {
+        "file": "test_output/images/person_1/chip_002.jpg",
+        "type": "image",
+        "name": "chip_002",
+        "author": "facial-vision-system",
+        "timestamp": "2019-08-25T13:28:36",
+        "clusterId": "person_1",
+        "face_bounds": {
+          "x": 2096,
+          "y": 741,
+          "w": 320,
+          "h": 321
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "deviceId": "Apple-iPhone-8",
+        "device": {
+          "manufacturer": "Apple",
+          "model": "iPhone 8",
+          "source": "exif",
+          "id": "Apple-iPhone-8"
+        }
+      }
+    ],
+    "device": {
+      "manufacturer": "Apple",
+      "model": "iPhone 8",
+      "source": "exif",
+      "id": "Apple-iPhone-8"
+    }
+  },
+  "topics": [
+    "face_detected",
+    "image_analysis"
+  ]
+}

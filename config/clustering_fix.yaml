@@ -1,0 +1,45 @@
+# Updated clustering configuration for better face separation
+# Copy these settings to config/default.yaml
+
+# Face clustering configuration - more aggressive separation
+clustering:
+  algorithm: "hdbscan"  # Options: "hdbscan", "dbscan", "agglomerative"
+  min_cluster_size: 2
+  min_samples: 1
+  cluster_selection_epsilon: 0.1  # More permissive (was 0.4)
+  metric: "cosine"  # Options: "cosine", "euclidean"
+  cluster_registry_path: "data/cluster_registry.json"
+  similarity_threshold: 0.2  # More strict (was 0.6)
+  max_clusters: 1000
+  incremental_update: true
+  recompute_interval: 1000
+
+# Alternative: Use DBSCAN if HDBSCAN doesn't work well
+# clustering:
+#   algorithm: "dbscan"
+#   min_cluster_size: 2
+#   min_samples: 1
+#   eps: 0.4  # Distance threshold for DBSCAN
+#   metric: "cosine"
+#   cluster_registry_path: "data/cluster_registry.json"
+#   similarity_threshold: 0.4
+#   max_clusters: 1000
+#   incremental_update: true
+#   recompute_interval: 1000
+
+# Face detection - use CNN for better embeddings (slower but more accurate)
+face_detection:
+  backend: "face_recognition"
+  model: "cnn"  # Use CNN instead of HOG for better quality embeddings
+  tolerance: 0.6
+  min_face_size: 40
+  confidence_threshold: 0.5
+  upsampling: 1
+
+# Enable debug logging to see clustering details
+logging:
+  level: "DEBUG"  # See detailed clustering information
+  format: "structured"
+  file_rotation: "daily"
+  max_files: 7
+  console_output: true

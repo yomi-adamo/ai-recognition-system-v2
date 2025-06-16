@@ -1,0 +1,1920 @@
+{
+  "file": "data/input/test_stroll.mp4",
+  "type": "video",
+  "name": "test_stroll",
+  "author": "facial-vision-system",
+  "timestamp": "2025-06-16T14:59:51.315647",
+  "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+  "metadata": {
+    "source_metadata": {
+      "filename": "test_stroll.mp4",
+      "file_path": "/home/adamoyomi/code/facial-vision/data/input/test_stroll.mp4",
+      "file_size": 246191440,
+      "creation_time": "2025-06-16T14:59:51.315647",
+      "modification_time": "2025-06-16T14:59:51.315647",
+      "timestamp": "2025-06-16T14:59:51.315647",
+      "video": {
+        "fps": 30.08829139869561,
+        "frame_count": 7303,
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 242.71900000000002,
+        "codec": "h264"
+      }
+    },
+    "processing_stats": {
+      "total_frames_in_video": 7303,
+      "frames_processed": 244,
+      "frames_with_faces": 50,
+      "total_face_detections": 55,
+      "clusters_assigned": 1,
+      "clustering_enabled": true,
+      "chips_generated": 55,
+      "fps": 30.08829139869561,
+      "duration_seconds": 242.71900000000002,
+      "frame_interval": 30
+    },
+    "video_info": {
+      "fps": 30.08829139869561,
+      "duration_seconds": 242.71900000000002,
+      "total_frames": 7303,
+      "resolution": "1920x1080"
+    },
+    "chips": [
+      {
+        "file": "test_output/videos/person_1/frame_000300_chip_000.jpg",
+        "type": "image",
+        "name": "frame_000300_chip_000",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 808,
+          "y": 928,
+          "w": 107,
+          "h": 107
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 300,
+        "videoTimestamp": "00:00:09.971",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11449,
+        "face_center": [
+          861,
+          981
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_000360_chip_001.jpg",
+        "type": "image",
+        "name": "frame_000360_chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1120,
+          "y": 746,
+          "w": 52,
+          "h": 52
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 360,
+        "videoTimestamp": "00:00:11.965",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 2704,
+        "face_center": [
+          1146,
+          772
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_000360_chip_002.jpg",
+        "type": "image",
+        "name": "frame_000360_chip_002",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 751,
+          "y": 768,
+          "w": 75,
+          "h": 75
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 360,
+        "videoTimestamp": "00:00:11.965",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 5625,
+        "face_center": [
+          788,
+          805
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_000750_chip_003.jpg",
+        "type": "image",
+        "name": "frame_000750_chip_003",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 154,
+          "y": 163,
+          "w": 75,
+          "h": 74
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 750,
+        "videoTimestamp": "00:00:24.927",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 5550,
+        "face_center": [
+          191,
+          200
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_000780_chip_004.jpg",
+        "type": "image",
+        "name": "frame_000780_chip_004",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 563,
+          "y": 196,
+          "w": 90,
+          "h": 89
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 780,
+        "videoTimestamp": "00:00:25.924",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8010,
+        "face_center": [
+          608,
+          240
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_000810_chip_005.jpg",
+        "type": "image",
+        "name": "frame_000810_chip_005",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 318,
+          "y": 223,
+          "w": 108,
+          "h": 108
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 810,
+        "videoTimestamp": "00:00:26.921",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11664,
+        "face_center": [
+          372,
+          277
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_000870_chip_006.jpg",
+        "type": "image",
+        "name": "frame_000870_chip_006",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 489,
+          "y": 387,
+          "w": 186,
+          "h": 186
+        },
+        "confidence": 0.8075,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 870,
+        "videoTimestamp": "00:00:28.915",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 34596,
+        "face_center": [
+          582,
+          480
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_001710_chip_007.jpg",
+        "type": "image",
+        "name": "frame_001710_chip_007",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 846,
+          "y": 290,
+          "w": 385,
+          "h": 385
+        },
+        "confidence": 0.855,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 1710,
+        "videoTimestamp": "00:00:56.833",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 148225,
+        "face_center": [
+          1038,
+          482
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_001770_chip_008.jpg",
+        "type": "image",
+        "name": "frame_001770_chip_008",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1101,
+          "y": 863,
+          "w": 90,
+          "h": 89
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 1770,
+        "videoTimestamp": "00:00:58.827",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8010,
+        "face_center": [
+          1146,
+          907
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_001770_chip_009.jpg",
+        "type": "image",
+        "name": "frame_001770_chip_009",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 795,
+          "y": 795,
+          "w": 267,
+          "h": 268
+        },
+        "confidence": 0.8075,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 1770,
+        "videoTimestamp": "00:00:58.827",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 71556,
+        "face_center": [
+          928,
+          929
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_001800_chip_010.jpg",
+        "type": "image",
+        "name": "frame_001800_chip_010",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1141,
+          "y": 753,
+          "w": 89,
+          "h": 90
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 1800,
+        "videoTimestamp": "00:00:59.824",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8010,
+        "face_center": [
+          1185,
+          798
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_001830_chip_011.jpg",
+        "type": "image",
+        "name": "frame_001830_chip_011",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1091,
+          "y": 693,
+          "w": 90,
+          "h": 90
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 1830,
+        "videoTimestamp": "00:01:00.821",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8100,
+        "face_center": [
+          1136,
+          738
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_001860_chip_012.jpg",
+        "type": "image",
+        "name": "frame_001860_chip_012",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1101,
+          "y": 644,
+          "w": 90,
+          "h": 89
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 1860,
+        "videoTimestamp": "00:01:01.818",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8010,
+        "face_center": [
+          1146,
+          688
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_001890_chip_013.jpg",
+        "type": "image",
+        "name": "frame_001890_chip_013",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 733,
+          "y": 494,
+          "w": 89,
+          "h": 90
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 1890,
+        "videoTimestamp": "00:01:02.815",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8010,
+        "face_center": [
+          777,
+          539
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_001920_chip_014.jpg",
+        "type": "image",
+        "name": "frame_001920_chip_014",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1091,
+          "y": 435,
+          "w": 90,
+          "h": 89
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 1920,
+        "videoTimestamp": "00:01:03.812",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8010,
+        "face_center": [
+          1136,
+          479
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_002010_chip_015.jpg",
+        "type": "image",
+        "name": "frame_002010_chip_015",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 153,
+          "y": 612,
+          "w": 129,
+          "h": 129
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 2010,
+        "videoTimestamp": "00:01:06.803",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 16641,
+        "face_center": [
+          217,
+          676
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_002130_chip_016.jpg",
+        "type": "image",
+        "name": "frame_002130_chip_016",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1704,
+          "y": 681,
+          "w": 62,
+          "h": 63
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 2130,
+        "videoTimestamp": "00:01:10.792",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 3906,
+        "face_center": [
+          1735,
+          712
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003030_chip_017.jpg",
+        "type": "image",
+        "name": "frame_003030_chip_017",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 227,
+          "y": 475,
+          "w": 52,
+          "h": 52
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3030,
+        "videoTimestamp": "00:01:40.704",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 2704,
+        "face_center": [
+          253,
+          501
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003060_chip_018.jpg",
+        "type": "image",
+        "name": "frame_003060_chip_018",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 577,
+          "y": 543,
+          "w": 63,
+          "h": 62
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3060,
+        "videoTimestamp": "00:01:41.701",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 3906,
+        "face_center": [
+          608,
+          574
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003090_chip_019.jpg",
+        "type": "image",
+        "name": "frame_003090_chip_019",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 195,
+          "y": 454,
+          "w": 90,
+          "h": 90
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3090,
+        "videoTimestamp": "00:01:42.698",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8100,
+        "face_center": [
+          240,
+          499
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003090_chip_020.jpg",
+        "type": "image",
+        "name": "frame_003090_chip_020",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1846,
+          "y": 743,
+          "w": 74,
+          "h": 75
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3090,
+        "videoTimestamp": "00:01:42.698",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 5550,
+        "face_center": [
+          1883,
+          780
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003120_chip_021.jpg",
+        "type": "image",
+        "name": "frame_003120_chip_021",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 511,
+          "y": 526,
+          "w": 129,
+          "h": 129
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3120,
+        "videoTimestamp": "00:01:43.695",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 16641,
+        "face_center": [
+          575,
+          590
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003180_chip_022.jpg",
+        "type": "image",
+        "name": "frame_003180_chip_022",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 930,
+          "y": 523,
+          "w": 62,
+          "h": 62
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3180,
+        "videoTimestamp": "00:01:45.689",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 3844,
+        "face_center": [
+          961,
+          554
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003240_chip_023.jpg",
+        "type": "image",
+        "name": "frame_003240_chip_023",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1290,
+          "y": 553,
+          "w": 75,
+          "h": 74
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3240,
+        "videoTimestamp": "00:01:47.683",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 5550,
+        "face_center": [
+          1327,
+          590
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003300_chip_024.jpg",
+        "type": "image",
+        "name": "frame_003300_chip_024",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 330,
+          "y": 510,
+          "w": 108,
+          "h": 107
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3300,
+        "videoTimestamp": "00:01:49.677",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11556,
+        "face_center": [
+          384,
+          563
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003330_chip_025.jpg",
+        "type": "image",
+        "name": "frame_003330_chip_025",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1409,
+          "y": 673,
+          "w": 90,
+          "h": 90
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3330,
+        "videoTimestamp": "00:01:50.674",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8100,
+        "face_center": [
+          1454,
+          718
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003420_chip_026.jpg",
+        "type": "image",
+        "name": "frame_003420_chip_026",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 867,
+          "y": 401,
+          "w": 52,
+          "h": 51
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3420,
+        "videoTimestamp": "00:01:53.665",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 2652,
+        "face_center": [
+          893,
+          426
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003420_chip_027.jpg",
+        "type": "image",
+        "name": "frame_003420_chip_027",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1440,
+          "y": 569,
+          "w": 74,
+          "h": 75
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3420,
+        "videoTimestamp": "00:01:53.665",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 5550,
+        "face_center": [
+          1477,
+          606
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003450_chip_028.jpg",
+        "type": "image",
+        "name": "frame_003450_chip_028",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1100,
+          "y": 354,
+          "w": 74,
+          "h": 74
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3450,
+        "videoTimestamp": "00:01:54.663",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 5476,
+        "face_center": [
+          1137,
+          391
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003750_chip_029.jpg",
+        "type": "image",
+        "name": "frame_003750_chip_029",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1698,
+          "y": 604,
+          "w": 90,
+          "h": 89
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3750,
+        "videoTimestamp": "00:02:04.633",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8010,
+        "face_center": [
+          1743,
+          648
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003780_chip_030.jpg",
+        "type": "image",
+        "name": "frame_003780_chip_030",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 820,
+          "y": 593,
+          "w": 107,
+          "h": 108
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3780,
+        "videoTimestamp": "00:02:05.630",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11556,
+        "face_center": [
+          873,
+          647
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003810_chip_031.jpg",
+        "type": "image",
+        "name": "frame_003810_chip_031",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 844,
+          "y": 570,
+          "w": 107,
+          "h": 107
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3810,
+        "videoTimestamp": "00:02:06.627",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11449,
+        "face_center": [
+          897,
+          623
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003840_chip_032.jpg",
+        "type": "image",
+        "name": "frame_003840_chip_032",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 844,
+          "y": 582,
+          "w": 107,
+          "h": 107
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3840,
+        "videoTimestamp": "00:02:07.624",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11449,
+        "face_center": [
+          897,
+          635
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003870_chip_033.jpg",
+        "type": "image",
+        "name": "frame_003870_chip_033",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 569,
+          "y": 593,
+          "w": 108,
+          "h": 108
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3870,
+        "videoTimestamp": "00:02:08.621",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11664,
+        "face_center": [
+          623,
+          647
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003960_chip_034.jpg",
+        "type": "image",
+        "name": "frame_003960_chip_034",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1241,
+          "y": 446,
+          "w": 62,
+          "h": 63
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3960,
+        "videoTimestamp": "00:02:11.613",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 3906,
+        "face_center": [
+          1272,
+          477
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_003990_chip_035.jpg",
+        "type": "image",
+        "name": "frame_003990_chip_035",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1322,
+          "y": 259,
+          "w": 107,
+          "h": 108
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 3990,
+        "videoTimestamp": "00:02:12.610",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11556,
+        "face_center": [
+          1375,
+          313
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_004200_chip_036.jpg",
+        "type": "image",
+        "name": "frame_004200_chip_036",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1168,
+          "y": 583,
+          "w": 44,
+          "h": 43
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 4200,
+        "videoTimestamp": "00:02:19.589",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 1892,
+        "face_center": [
+          1190,
+          604
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_004800_chip_037.jpg",
+        "type": "image",
+        "name": "frame_004800_chip_037",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 617,
+          "y": 390,
+          "w": 107,
+          "h": 108
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 4800,
+        "videoTimestamp": "00:02:39.530",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11556,
+        "face_center": [
+          670,
+          444
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_005880_chip_038.jpg",
+        "type": "image",
+        "name": "frame_005880_chip_038",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 971,
+          "y": 633,
+          "w": 63,
+          "h": 62
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 5880,
+        "videoTimestamp": "00:03:15.425",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 3906,
+        "face_center": [
+          1002,
+          664
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_005910_chip_039.jpg",
+        "type": "image",
+        "name": "frame_005910_chip_039",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 802,
+          "y": 673,
+          "w": 90,
+          "h": 90
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 5910,
+        "videoTimestamp": "00:03:16.422",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8100,
+        "face_center": [
+          847,
+          718
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_005940_chip_040.jpg",
+        "type": "image",
+        "name": "frame_005940_chip_040",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1375,
+          "y": 646,
+          "w": 43,
+          "h": 43
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 5940,
+        "videoTimestamp": "00:03:17.419",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 1849,
+        "face_center": [
+          1396,
+          667
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_005940_chip_041.jpg",
+        "type": "image",
+        "name": "frame_005940_chip_041",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 592,
+          "y": 574,
+          "w": 44,
+          "h": 43
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 5940,
+        "videoTimestamp": "00:03:17.419",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 1892,
+        "face_center": [
+          614,
+          595
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_006000_chip_042.jpg",
+        "type": "image",
+        "name": "frame_006000_chip_042",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 577,
+          "y": 627,
+          "w": 75,
+          "h": 75
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 6000,
+        "videoTimestamp": "00:03:19.413",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 5625,
+        "face_center": [
+          614,
+          664
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_006030_chip_043.jpg",
+        "type": "image",
+        "name": "frame_006030_chip_043",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 464,
+          "y": 584,
+          "w": 90,
+          "h": 89
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 6030,
+        "videoTimestamp": "00:03:20.410",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 8010,
+        "face_center": [
+          509,
+          628
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_006060_chip_044.jpg",
+        "type": "image",
+        "name": "frame_006060_chip_044",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 748,
+          "y": 593,
+          "w": 108,
+          "h": 108
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 6060,
+        "videoTimestamp": "00:03:21.407",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11664,
+        "face_center": [
+          802,
+          647
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_006450_chip_045.jpg",
+        "type": "image",
+        "name": "frame_006450_chip_045",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1650,
+          "y": 510,
+          "w": 52,
+          "h": 52
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 6450,
+        "videoTimestamp": "00:03:34.369",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 2704,
+        "face_center": [
+          1676,
+          536
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_006480_chip_046.jpg",
+        "type": "image",
+        "name": "frame_006480_chip_046",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 780,
+          "y": 449,
+          "w": 43,
+          "h": 43
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 6480,
+        "videoTimestamp": "00:03:35.366",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 1849,
+        "face_center": [
+          801,
+          470
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_006840_chip_047.jpg",
+        "type": "image",
+        "name": "frame_006840_chip_047",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1434,
+          "y": 619,
+          "w": 63,
+          "h": 62
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 6840,
+        "videoTimestamp": "00:03:47.331",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 3906,
+        "face_center": [
+          1465,
+          650
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_007050_chip_048.jpg",
+        "type": "image",
+        "name": "frame_007050_chip_048",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1572,
+          "y": 644,
+          "w": 75,
+          "h": 75
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 7050,
+        "videoTimestamp": "00:03:54.310",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 5625,
+        "face_center": [
+          1609,
+          681
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_007080_chip_049.jpg",
+        "type": "image",
+        "name": "frame_007080_chip_049",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1393,
+          "y": 641,
+          "w": 108,
+          "h": 108
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 7080,
+        "videoTimestamp": "00:03:55.307",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 11664,
+        "face_center": [
+          1447,
+          695
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_007110_chip_050.jpg",
+        "type": "image",
+        "name": "frame_007110_chip_050",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 752,
+          "y": 666,
+          "w": 154,
+          "h": 155
+        },
+        "confidence": 0.8075,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 7110,
+        "videoTimestamp": "00:03:56.305",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 23870,
+        "face_center": [
+          829,
+          743
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_007140_chip_051.jpg",
+        "type": "image",
+        "name": "frame_007140_chip_051",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 913,
+          "y": 669,
+          "w": 129,
+          "h": 129
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 7140,
+        "videoTimestamp": "00:03:57.302",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 16641,
+        "face_center": [
+          977,
+          733
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_007170_chip_052.jpg",
+        "type": "image",
+        "name": "frame_007170_chip_052",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 855,
+          "y": 649,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.8075,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 7170,
+        "videoTimestamp": "00:03:58.299",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          932,
+          726
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_007260_chip_053.jpg",
+        "type": "image",
+        "name": "frame_007260_chip_053",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 1274,
+          "y": 418,
+          "w": 385,
+          "h": 386
+        },
+        "confidence": 0.855,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 7260,
+        "videoTimestamp": "00:04:01.290",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 148610,
+        "face_center": [
+          1466,
+          611
+        ]
+      },
+      {
+        "file": "test_output/videos/person_1/frame_007290_chip_054.jpg",
+        "type": "image",
+        "name": "frame_007290_chip_054",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-16T14:59:51.315647",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/test_stroll.mp4",
+        "face_bounds": {
+          "x": 803,
+          "y": 290,
+          "w": 385,
+          "h": 385
+        },
+        "confidence": 0.855,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "2fd31214-9edf-4a63-96c2-f65ad34622fb",
+        "frameNumber": 7290,
+        "videoTimestamp": "00:04:02.287",
+        "video_metadata": {
+          "fps": 30.08829139869561,
+          "duration_seconds": 242.71900000000002,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 148225,
+        "face_center": [
+          995,
+          482
+        ]
+      }
+    ]
+  },
+  "topics": [
+    "face_detected",
+    "video_analysis"
+  ]
+}
