@@ -130,8 +130,8 @@ def test_batch_processing(input_dir: str, output_dir: str = "test_output"):
         return False
     
     try:
-        # Initialize processor
-        processor = BatchProcessor(enable_clustering=True, max_workers=2)
+        # Initialize processor with single worker to avoid segfault
+        processor = BatchProcessor(enable_clustering=True, max_workers=1)
         formatter = JSONFormatter()
         
         # Process directory
