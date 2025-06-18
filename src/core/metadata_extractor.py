@@ -3,6 +3,7 @@ import re
 from datetime import datetime
 from pathlib import Path
 from typing import Any, Dict, List, Optional, Tuple, Union
+import numpy as np
 
 import cv2
 import exifread
@@ -17,6 +18,14 @@ try:
     FFMPEG_AVAILABLE = True
 except ImportError:
     FFMPEG_AVAILABLE = False
+    ffmpeg = None
+
+# Try to import gpmf for GPS track extraction
+try:
+    import gpmf
+    GPMF_AVAILABLE = True
+except ImportError:
+    GPMF_AVAILABLE = False
 
 logger = get_facial_vision_logger(__name__)
 
@@ -41,6 +50,9 @@ class MetadataExtractor:
             (r'CAM[_\-\s]?([0-9A-Z\-]+)', 'Generic'),
             (r'CAMERA[_\-\s]?([0-9A-Z\-]+)', 'Generic'),
         ]
+        
+        # GPS track cache for videos
+        self._gps_track_cache = {}
 
     @timing_decorator
     def extract_metadata(self, file_path: Union[str, Path]) -> Dict[str, Any]:
@@ -423,6 +435,305 @@ class MetadataExtractor:
 
         return device_info if device_info else None
 
+    def extract_gps_track_from_video(self, video_path: Union[str, Path]) -> Optional[Dict[str, Any]]:
+        """
+        Extract GPS track data from video file
+        
+        Args:
+            video_path: Path to video file
+            
+        Returns:
+            Dictionary with GPS track data or None if no GPS data found
+        """
+        video_path = Path(video_path)
+        cache_key = str(video_path.absolute())
+        
+        # Check cache first
+        if cache_key in self._gps_track_cache:
+            return self._gps_track_cache[cache_key]
+        
+        gps_track = None
+        
+        # Try GPMF extraction (GoPro and similar)
+        if GPMF_AVAILABLE:
+            gps_track = self._extract_gpmf_gps_track(video_path)
+        
+        # Fallback: Try extracting from general MP4 metadata
+        if not gps_track:
+            gps_track = self._extract_mp4_gps_track(video_path)
+        
+        # TODO: Add other GPS extraction methods for different camera types
+        # - DJI SRT files
+        # - Dash cam formats
+        
+        # Cache the result
+        self._gps_track_cache[cache_key] = gps_track
+        
+        if gps_track:
+            logger.info(f"Extracted GPS track with {len(gps_track.get('coordinates', []))} points from {video_path.name}")
+        else:
+            logger.debug(f"No GPS track found in {video_path.name}")
+            
+        return gps_track
+
+    def _extract_gpmf_gps_track(self, video_path: Path) -> Optional[Dict[str, Any]]:
+        """Extract GPS track using GPMF library (for GoPro videos)"""
+        try:
+            # Extract GPMF stream from video
+            stream = gpmf.io.extract_gpmf_stream(str(video_path))
+            
+            if not stream:
+                logger.debug(f"No GPMF stream found in {video_path.name}")
+                return None
+            
+            # Try to parse GPS data from stream
+            try:
+                # Use gpmf library to extract GPS coordinates and timestamps
+                gps_coords = []
+                timestamps = []
+                
+                # The gpmf library should have methods to extract GPS data
+                # This is a basic implementation that may need refinement
+                
+                # Check if we can extract GPS track data
+                if hasattr(gpmf, 'gps') and hasattr(gpmf.gps, 'extract_gps_from_stream'):
+                    gps_data = gpmf.gps.extract_gps_from_stream(stream)
+                    
+                    if gps_data:
+                        # Convert to our format
+                        for entry in gps_data:
+                            if 'lat' in entry and 'lon' in entry:
+                                coord = {
+                                    'lat': float(entry['lat']),
+                                    'lon': float(entry['lon'])
+                                }
+                                if 'alt' in entry:
+                                    coord['alt'] = float(entry['alt'])
+                                    
+                                gps_coords.append(coord)
+                                
+                                # Extract timestamp if available
+                                if 'time' in entry:
+                                    timestamps.append(float(entry['time']))
+                                elif 'timestamp' in entry:
+                                    timestamps.append(float(entry['timestamp']))
+                
+                if gps_coords:
+                    # Generate timestamps if not available (based on typical GoPro 18Hz GPS rate)
+                    if not timestamps or len(timestamps) != len(gps_coords):
+                        logger.debug("Generating synthetic timestamps for GPS coordinates")
+                        gps_rate = 18  # Hz - typical GoPro GPS rate
+                        timestamps = [i / gps_rate for i in range(len(gps_coords))]
+                    
+                    return {
+                        'coordinates': gps_coords,
+                        'timestamps': timestamps,
+                        'source': 'gpmf',
+                        'total_points': len(gps_coords)
+                    }
+                else:
+                    logger.debug(f"No GPS coordinates found in GPMF stream from {video_path.name}")
+                    return None
+                    
+            except Exception as parse_error:
+                logger.debug(f"Failed to parse GPS from GPMF stream: {parse_error}")
+                
+                # Fallback: Try basic stream inspection
+                logger.debug(f"GPMF stream extracted from {video_path.name}, but GPS parsing failed")
+                return None
+            
+        except Exception as e:
+            logger.debug(f"Failed to extract GPMF GPS track: {e}")
+            return None
+
+    def _extract_mp4_gps_track(self, video_path: Path) -> Optional[Dict[str, Any]]:
+        """Extract GPS track from general MP4 metadata"""
+        try:
+            if not FFMPEG_AVAILABLE:
+                return None
+                
+            # Extract metadata using ffprobe
+            probe = ffmpeg.probe(str(video_path))
+            
+            # Look for GPS data in various locations
+            gps_coords = []
+            timestamps = []
+            
+            # Check format-level metadata
+            if 'format' in probe and 'tags' in probe['format']:
+                tags = probe['format']['tags']
+                
+                # Look for single GPS coordinate (common in many cameras)
+                if self._has_gps_tags(tags):
+                    coord = self._extract_single_gps_coordinate(tags)
+                    if coord:
+                        # For single GPS coordinate, create a minimal track
+                        # This represents the location where recording started
+                        gps_coords = [coord]
+                        timestamps = [0.0]  # At start of video
+                        
+                        return {
+                            'coordinates': gps_coords,
+                            'timestamps': timestamps,
+                            'source': 'mp4_metadata',
+                            'total_points': 1,
+                            'type': 'single_location'  # Indicates this is not a track
+                        }
+            
+            # Check for GPS tracks in streams (less common)
+            for stream in probe.get('streams', []):
+                if stream.get('codec_type') == 'data':
+                    # Look for GPS data streams
+                    if 'tags' in stream and self._has_gps_tags(stream['tags']):
+                        coord = self._extract_single_gps_coordinate(stream['tags'])
+                        if coord:
+                            gps_coords.append(coord)
+                            timestamps.append(0.0)
+            
+            if gps_coords:
+                return {
+                    'coordinates': gps_coords,
+                    'timestamps': timestamps,
+                    'source': 'mp4_streams',
+                    'total_points': len(gps_coords),
+                    'type': 'single_location'
+                }
+                
+            return None
+            
+        except Exception as e:
+            logger.debug(f"Failed to extract MP4 GPS track: {e}")
+            return None
+
+    def _has_gps_tags(self, tags: Dict[str, Any]) -> bool:
+        """Check if metadata tags contain GPS information"""
+        gps_keys = [
+            'location', 'GPS', 'gps', 'latitude', 'longitude', 
+            'lat', 'lon', 'coordinates', 'Location'
+        ]
+        return any(key in tags for key in gps_keys)
+
+    def _extract_single_gps_coordinate(self, tags: Dict[str, Any]) -> Optional[Dict[str, float]]:
+        """Extract a single GPS coordinate from metadata tags"""
+        try:
+            coord = {}
+            
+            # Try various tag formats
+            if 'location' in tags:
+                # Parse location string (e.g., "+37.7749-122.4194+010.000/")
+                location = tags['location']
+                if location.startswith('+') or location.startswith('-'):
+                    # ISO 6709 format
+                    import re
+                    match = re.match(r'([+-]\d+\.?\d*)([+-]\d+\.?\d*)([+-]\d+\.?\d*)?', location)
+                    if match:
+                        coord['lat'] = float(match.group(1))
+                        coord['lon'] = float(match.group(2))
+                        if match.group(3):
+                            coord['alt'] = float(match.group(3))
+            
+            # Try direct latitude/longitude tags
+            for lat_key in ['latitude', 'lat']:
+                if lat_key in tags:
+                    coord['lat'] = float(tags[lat_key])
+                    
+            for lon_key in ['longitude', 'lon']:
+                if lon_key in tags:
+                    coord['lon'] = float(tags[lon_key])
+            
+            # Try altitude
+            for alt_key in ['altitude', 'alt', 'elevation']:
+                if alt_key in tags:
+                    coord['alt'] = float(tags[alt_key])
+            
+            if 'lat' in coord and 'lon' in coord:
+                return coord
+                
+            return None
+            
+        except Exception as e:
+            logger.debug(f"Failed to parse GPS coordinate from tags: {e}")
+            return None
+
+    def get_gps_at_timestamp(self, video_path: Union[str, Path], timestamp_seconds: float) -> Optional[Dict[str, float]]:
+        """
+        Get GPS coordinates at a specific video timestamp
+        
+        Args:
+            video_path: Path to video file
+            timestamp_seconds: Timestamp in seconds from video start
+            
+        Returns:
+            GPS coordinates (lat, lon, alt) or None if not available
+        """
+        gps_track = self.extract_gps_track_from_video(video_path)
+        
+        if not gps_track or 'coordinates' not in gps_track:
+            return None
+            
+        coordinates = gps_track['coordinates']
+        timestamps = gps_track.get('timestamps', [])
+        track_type = gps_track.get('type', 'track')
+        
+        if not coordinates or not timestamps:
+            return None
+            
+        # Handle single location (static GPS)
+        if track_type == 'single_location' or len(coordinates) == 1:
+            logger.debug(f"Using single GPS location for timestamp {timestamp_seconds}s")
+            return coordinates[0]
+            
+        # Find the closest timestamp
+        if len(timestamps) != len(coordinates):
+            logger.warning("GPS timestamps and coordinates length mismatch")
+            return None
+            
+        # Linear interpolation between GPS points
+        return self._interpolate_gps_coordinates(coordinates, timestamps, timestamp_seconds)
+
+    def _interpolate_gps_coordinates(self, coordinates: List[Dict[str, float]], 
+                                   timestamps: List[float], 
+                                   target_timestamp: float) -> Optional[Dict[str, float]]:
+        """
+        Interpolate GPS coordinates for a specific timestamp
+        
+        Args:
+            coordinates: List of GPS coordinate dictionaries
+            timestamps: List of timestamps corresponding to coordinates
+            target_timestamp: Target timestamp to interpolate for
+            
+        Returns:
+            Interpolated GPS coordinates or None
+        """
+        if not coordinates or not timestamps:
+            return None
+            
+        # Handle edge cases
+        if target_timestamp <= timestamps[0]:
+            return coordinates[0]
+        if target_timestamp >= timestamps[-1]:
+            return coordinates[-1]
+            
+        # Find the two closest points
+        for i in range(len(timestamps) - 1):
+            if timestamps[i] <= target_timestamp <= timestamps[i + 1]:
+                # Linear interpolation
+                t1, t2 = timestamps[i], timestamps[i + 1]
+                coord1, coord2 = coordinates[i], coordinates[i + 1]
+                
+                # Interpolation factor
+                factor = (target_timestamp - t1) / (t2 - t1)
+                
+                # Interpolate each coordinate
+                interpolated = {}
+                for key in ['lat', 'lon', 'alt']:
+                    if key in coord1 and key in coord2:
+                        interpolated[key] = coord1[key] + factor * (coord2[key] - coord1[key])
+                
+                return interpolated
+                
+        return None
+
     def create_chip_metadata(
         self,
         source_file: Union[str, Path],
@@ -432,7 +743,8 @@ class MetadataExtractor:
         confidence: float,
         frame_number: Optional[int] = None,
         video_timestamp: Optional[float] = None,
-        parent_id: Optional[str] = None
+        parent_id: Optional[str] = None,
+        frame_specific_gps: bool = True
     ) -> Dict[str, Any]:
         """
         Create comprehensive metadata for a face chip
@@ -446,6 +758,7 @@ class MetadataExtractor:
             frame_number: Frame number for video sources
             video_timestamp: Timestamp within video in seconds
             parent_id: Blockchain asset ID of parent file
+            frame_specific_gps: Whether to extract GPS for specific video timestamp
             
         Returns:
             Comprehensive metadata dictionary
@@ -486,7 +799,22 @@ class MetadataExtractor:
             chip_metadata['device'] = device_info
             
         # Add GPS if available
-        gps_info = source_metadata.get('gps')
+        gps_info = None
+        
+        # For videos with frame-specific GPS enabled, try to get GPS at the specific timestamp
+        if (frame_specific_gps and video_timestamp is not None and 
+            source_path.suffix.lower() in ['.mp4', '.avi', '.mov', '.mkv', '.webm']):
+            try:
+                gps_info = self.get_gps_at_timestamp(source_path, video_timestamp)
+                if gps_info:
+                    logger.debug(f"Using frame-specific GPS for timestamp {video_timestamp}s: {gps_info}")
+            except Exception as e:
+                logger.debug(f"Failed to get frame-specific GPS: {e}")
+        
+        # Fallback to general source metadata GPS
+        if not gps_info:
+            gps_info = source_metadata.get('gps')
+            
         if gps_info:
             chip_metadata['gps'] = gps_info
             

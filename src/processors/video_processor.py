@@ -185,10 +185,39 @@ class VideoProcessor(MediaProcessorBase):
         cluster_ids = []
         if use_clustering and all_faces:
             try:
-                # Process all faces for clustering
-                cluster_ids = self.face_clusterer.process_faces(
-                    all_frames[0], all_faces  # Use first frame as reference for clustering
-                )
+                # Process faces frame by frame to get correct embeddings
+                cluster_ids = []
+                
+                # Group faces by frame for efficient processing
+                from collections import defaultdict
+                frame_face_map = defaultdict(list)
+                face_indices = []
+                
+                for idx, (frame_data, face) in enumerate(zip(frame_detections, all_faces)):
+                    frame_num = frame_data['frame_number']
+                    frame_face_map[frame_num].append((idx, face, frame_data['frame']))
+                    face_indices.append(idx)
+                
+                # Process each frame's faces
+                temp_cluster_ids = [None] * len(all_faces)
+                
+                for frame_num, face_data_list in frame_face_map.items():
+                    if not face_data_list:
+                        continue
+                        
+                    # Get the frame and faces for this frame
+                    indices = [data[0] for data in face_data_list]
+                    faces = [data[1] for data in face_data_list]
+                    frame = face_data_list[0][2]  # All entries have the same frame
+                    
+                    # Process this frame's faces
+                    frame_cluster_ids = self.face_clusterer.process_faces(frame, faces)
+                    
+                    # Map back to original indices
+                    for idx, cluster_id in zip(indices, frame_cluster_ids):
+                        temp_cluster_ids[idx] = cluster_id
+                
+                cluster_ids = temp_cluster_ids
                 logger.info(f"Clustered faces into {len(set(cluster_ids))} clusters")
             except Exception as e:
                 logger.warning(f"Clustering failed: {e}")
@@ -230,7 +259,7 @@ class VideoProcessor(MediaProcessorBase):
                         cluster_id=cluster_id
                     )
 
-                # Create comprehensive chip metadata
+                # Create comprehensive chip metadata with frame-specific GPS
                 chip_metadata = self.metadata_extractor.create_chip_metadata(
                     source_file=video_path,
                     chip_path=chip_path or f"frame_{frame_data['frame_number']:06d}_chip_{i:03d}.jpg",
@@ -239,7 +268,8 @@ class VideoProcessor(MediaProcessorBase):
                     confidence=detection.confidence,
                     frame_number=frame_data["frame_number"],
                     video_timestamp=frame_data["video_timestamp"],
-                    parent_id=parent_id
+                    parent_id=parent_id,
+                    frame_specific_gps=True  # Enable frame-specific GPS extraction
                 )
 
                 # Add detection-specific data

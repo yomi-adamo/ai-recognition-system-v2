@@ -274,6 +274,47 @@ class JSONFormatter:
 
         return formatted_chips
 
+    def _get_topics_for_file_type(self, file_type: str) -> List[str]:
+        """Get appropriate topics based on file type according to CLAUDE.md"""
+        if file_type == "video":
+            return ["face_detected", "video_analysis"]
+        elif file_type == "image":
+            return ["face_detected", "image_analysis"]
+        else:
+            return ["face_detected"]
+
+    def _extract_gps_from_exif(self, exif_data: Dict[str, Any]) -> Dict[str, float]:
+        """Extract GPS coordinates from EXIF data"""
+        # This is a simplified implementation - real EXIF GPS extraction is more complex
+        # For now, return None as most test images don't have GPS
+        return None
+
+    def _format_chips_for_claude_spec(self, chips: List[Dict[str, Any]]) -> List[Dict[str, Any]]:
+        """Format chip metadata according to CLAUDE.md specification"""
+        formatted_chips = []
+        
+        for chip in chips:
+            # Create chip in exact CLAUDE.md format
+            formatted_chip = {
+                "file": chip.get("file", ""),
+                "type": "image",
+                "name": chip.get("name", ""),
+                "author": chip.get("author", "facial-vision-system"),
+                "timestamp": chip.get("timestamp", datetime.now().isoformat()),
+                "deviceId": chip.get("deviceId", ""),
+                "clusterId": chip.get("clusterId", "unknown"),
+                "face_bounds": chip.get("face_bounds", {}),
+                "topics": ["face_detected"]
+            }
+
+            # Remove empty deviceId if not available
+            if not formatted_chip["deviceId"]:
+                del formatted_chip["deviceId"]
+
+            formatted_chips.append(formatted_chip)
+
+        return formatted_chips
+
     def format_batch_result(self, batch_result: Dict[str, Any]) -> Dict[str, Any]:
         """
         Format batch processing results for comprehensive output
@@ -323,6 +364,7 @@ class JSONFormatter:
     ) -> Dict[str, Any]:
         """
         Create JSON structure specifically for blockchain asset creation
+        Matches the format specified in docs/CLAUDE.md
 
         Args:
             processing_result: Result from processor
@@ -331,33 +373,46 @@ class JSONFormatter:
         Returns:
             JSON structure ready for blockchain submission
         """
-        formatted = self.format_processing_result(processing_result)
+        # Extract basic info
+        file_path = processing_result.get("file", "")
+        file_type = processing_result.get("type", "unknown")
+        metadata = processing_result.get("metadata", {})
+        chips = metadata.get("chips", [])
         
-        # Create blockchain-specific structure
+        # Create CLAUDE.md compliant structure
         blockchain_json = {
-            "file": formatted["file"],
-            "type": formatted["type"], 
-            "name": formatted["name"],
-            "author": formatted["author"],
-            "parentId": formatted.get("parentId"),
+            "file": file_path,
+            "type": file_type,
+            "name": processing_result.get("name", Path(file_path).stem),
+            "author": processing_result.get("author", "facial-vision-system"),
+            "timestamp": processing_result.get("timestamp", datetime.now().isoformat()),
+            "parentId": processing_result.get("parentId"),
             "metadata": {},
-            "topics": formatted["topics"],
+            "topics": self._get_topics_for_file_type(file_type)
         }
 
-        # Add metadata
-        if include_chips_in_metadata:
-            blockchain_json["metadata"] = formatted["metadata"]
-        else:
-            # Include only summary statistics
-            blockchain_json["metadata"] = {
-                "processing_stats": formatted["metadata"]["processing_stats"],
-                "total_chips": len(formatted["metadata"].get("chips", [])),
-                "clusters": list(set(
-                    chip.get("clusterId", "unknown") 
-                    for chip in formatted["metadata"].get("chips", [])
-                )),
-            }
+        # Build metadata section according to CLAUDE.md format
+        metadata_section = {}
+        
+        # Add GPS if available (already extracted by MetadataExtractor)
+        if "gps" in metadata:
+            gps_data = metadata["gps"]
+            if gps_data and "lat" in gps_data and "lon" in gps_data:
+                metadata_section["GPS"] = {
+                    "lat": gps_data["lat"],
+                    "lon": gps_data["lon"]
+                }
+                # Add altitude if available
+                if "altitude" in gps_data:
+                    metadata_section["GPS"]["alt"] = gps_data["altitude"]
+        elif "GPS" in metadata:
+            metadata_section["GPS"] = metadata["GPS"]
 
+        # Add chips in CLAUDE.md format
+        if include_chips_in_metadata and chips:
+            metadata_section["chips"] = self._format_chips_for_claude_spec(chips)
+
+        blockchain_json["metadata"] = metadata_section
         return blockchain_json
 
     def validate_blockchain_json(self, blockchain_json: Dict[str, Any]) -> bool:

@@ -1,10 +1,10 @@
 # Face detection settings
 face_detection:
   backend: "face_recognition"  # Options: "face_recognition", "mtcnn", "opencv"
-  model: "hog"  # Options: "hog" (faster) or "cnn" (more accurate) for face_recognition
+  model: "hog"  # Options: "hog" (faster, fewer false positives) or "cnn" (more accurate) for face_recognition
   tolerance: 0.6
-  min_face_size: 40
-  confidence_threshold: 0.5
+  min_face_size: 100  # Increased from 40 to reduce false positives on small objects
+  confidence_threshold: 0.7  # Increased from 0.5 to filter low-confidence detections
   upsampling: 1  # For face_recognition backend
   # MTCNN specific settings
   mtcnn_thresholds: [0.6, 0.7, 0.7]
@@ -42,7 +42,7 @@ blockchain:
 # Face recognition settings (for existing functionality)
 face_recognition:
   database_path: "data/face_db/faces.pkl"
-  similarity_threshold: 0.6
+  similarity_threshold: 0.2
   max_matches: 5
   encoding_jitter: 1
   min_faces_for_identity: 1
@@ -50,12 +50,13 @@ face_recognition:
 # Face clustering configuration
 clustering:
   algorithm: "hdbscan"  # Options: "hdbscan", "dbscan", "agglomerative"
-  min_cluster_size: 2
+  min_cluster_size: 1
   min_samples: 1
-  cluster_selection_epsilon: 0.05  # Very permissive for better separation
+  cluster_selection_epsilon: 0.3  # More balanced clustering
   metric: "cosine"  # Options: "cosine", "euclidean" (cosine handled via normalization)
   cluster_registry_path: "data/cluster_registry.json"
-  similarity_threshold: 0.3  # Very strict for better separation
+  similarity_threshold: 0.90  # More permissive threshold for better face separation
+  eps: 0.3  # DBSCAN distance threshold (for cosine similarity)
   max_clusters: 1000
   incremental_update: true
   recompute_interval: 1000  # Recompute clusters after N new faces

@@ -33,7 +33,9 @@ class ImageProcessor(MediaProcessorBase):
         face_config = config.get_face_detection_config()
         self.face_detector = FaceDetector(
             backend=face_config.get("backend", "face_recognition"),
+            model=face_config.get("model", "hog"),
             min_face_size=face_config.get("min_face_size", 40),
+            confidence_threshold=face_config.get("confidence_threshold", 0.5),
         )
 
         self.metadata_extractor = MetadataExtractor()

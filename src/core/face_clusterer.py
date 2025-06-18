@@ -297,16 +297,18 @@ class ClusterManager:
             return []
 
         assignments = []
+        temp_centroids = existing_centroids.copy()
 
-        for embedding in new_embeddings:
-            if not existing_centroids:
+        for i, embedding in enumerate(new_embeddings):
+            if not temp_centroids:
                 # No existing clusters, create new one
                 assignments.append("person_1")
+                temp_centroids["person_1"] = embedding
                 continue
 
             # Calculate similarities to existing centroids
             similarities = {}
-            for cluster_id, centroid in existing_centroids.items():
+            for cluster_id, centroid in temp_centroids.items():
                 if self.metric == "cosine":
                     similarity = self._cosine_similarity(embedding, centroid)
                 else:
@@ -322,8 +324,9 @@ class ClusterManager:
                 assignments.append(best_cluster)
             else:
                 # Create new cluster
-                next_id = self._get_next_cluster_id(list(existing_centroids.keys()))
+                next_id = self._get_next_cluster_id(list(temp_centroids.keys()))
                 assignments.append(next_id)
+                temp_centroids[next_id] = embedding
 
         return assignments
 

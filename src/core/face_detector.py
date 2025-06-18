@@ -88,7 +88,7 @@ class BaseFaceDetector(ABC):
 class FaceRecognitionDetector(BaseFaceDetector):
     """Face detector using face_recognition library"""
 
-    def __init__(self, model: str = "hog", min_face_size: int = 40, upsampling: int = 1):
+    def __init__(self, model: str = "hog", min_face_size: int = 40, upsampling: int = 1, confidence_threshold: float = 0.5):
         if not FACE_RECOGNITION_AVAILABLE:
             raise ImportError("face_recognition is not installed")
 
@@ -98,6 +98,7 @@ class FaceRecognitionDetector(BaseFaceDetector):
 
         self.min_face_size = min_face_size
         self.upsampling = upsampling
+        self.confidence_threshold = confidence_threshold
 
         logger.info(
             f"Initialized FaceRecognitionDetector",
@@ -133,6 +134,10 @@ class FaceRecognitionDetector(BaseFaceDetector):
 
             # Estimate confidence based on size
             confidence = self._estimate_confidence(width * height, image.shape)
+            
+            # Filter by confidence threshold
+            if confidence < self.confidence_threshold:
+                continue
 
             detections.append(FaceDetection(bbox=bbox, confidence=confidence))
 
@@ -325,6 +330,7 @@ class FaceDetector:
                 model=kwargs.get("model", "hog"),
                 min_face_size=kwargs.get("min_face_size", 40),
                 upsampling=kwargs.get("upsampling", 1),
+                confidence_threshold=kwargs.get("confidence_threshold", 0.5),
             )
         elif self.backend_name == "mtcnn":
             self.detector = MTCNNDetector(
