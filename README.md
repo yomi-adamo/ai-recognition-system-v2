@@ -6,7 +6,9 @@ A backend system for detecting and recognizing faces in images and videos, outpu
 
 - Face detection in images and videos
 - Automatic face cropping and metadata extraction
-- GPS and timestamp extraction from media files
+- **NEW: Frame-specific GPS extraction for videos** - Captures GPS coordinates at the exact moment each face is detected
+- GPS and timestamp extraction from media files (supports GPMF format for GoPro/action cameras and standard MP4 metadata)
+- Face clustering to group similar faces across frames
 - Batch processing capabilities
 - IPFS integration for distributed storage
 - Blockchain logging via FireFly
@@ -37,6 +39,7 @@ facial-vision/
 1. Clone the repository:
 ```bash
 git clone https://github.com/yomi-adamo/ai-recognition-system-v2.git
+cd ai-recognition-system-v2
 ```
 
 2. Create a virtual environment:
@@ -57,6 +60,17 @@ venv\Scripts\activate  # On Windows
 3. Install dependencies:
 ```bash
 pip install -r requirements.txt
+```
+
+4. (Optional) For GPS extraction from videos:
+```bash
+# Install ffprobe for video metadata extraction
+sudo apt-get install ffmpeg  # On Ubuntu/Debian
+# or
+brew install ffmpeg  # On macOS
+
+# Install GPMF parser for GoPro videos
+pip install gpmf
 ```
 
 ## Usage
@@ -87,6 +101,8 @@ Edit `config/default.yaml` to customize:
 ## Output Format
 
 The system outputs JSON files with the following structure:
+
+### For Images:
 ```json
 {
     "file": "base64_encoded_image_or_path",
@@ -98,6 +114,29 @@ The system outputs JSON files with the following structure:
         "confidence": 0.95,
         "source_file": "original_filename.jpg",
         "face_bounds": {"x": 100, "y": 150, "w": 200, "h": 200}
+    }
+}
+```
+
+### For Videos (with frame-specific GPS):
+```json
+{
+    "file": "face_chip_path.jpg",
+    "type": "image",
+    "name": "frame_000300_chip_000",
+    "clusterId": "person_1",
+    "timestamp": "2024-01-15T10:30:00Z",
+    "videoTimestamp": "00:00:09.971",
+    "frameNumber": 300,
+    "gps": {
+        "lat": 40.7128,
+        "lon": -74.0060,
+        "alt": 100.5,
+        "timestamp": "2024-01-15T10:30:09.971Z"
+    },
+    "metadata": {
+        "confidence": 0.95,
+        "face_bounds": {"x": 808, "y": 928, "w": 107, "h": 107}
     }
 }
 ```
