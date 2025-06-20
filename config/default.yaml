@@ -52,10 +52,10 @@ clustering:
   algorithm: "hdbscan"  # Options: "hdbscan", "dbscan", "agglomerative"
   min_cluster_size: 1
   min_samples: 1
-  cluster_selection_epsilon: 0.3  # More balanced clustering
+  cluster_selection_epsilon: 0.2
   metric: "cosine"  # Options: "cosine", "euclidean" (cosine handled via normalization)
   cluster_registry_path: "data/cluster_registry.json"
-  similarity_threshold: 0.90  # More permissive threshold for better face separation
+  similarity_threshold: 0.9625
   eps: 0.3  # DBSCAN distance threshold (for cosine similarity)
   max_clusters: 1000
   incremental_update: true

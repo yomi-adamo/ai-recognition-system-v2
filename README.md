@@ -6,12 +6,13 @@ A backend system for detecting and recognizing faces in images and videos, outpu
 
 - Face detection in images and videos
 - Automatic face cropping and metadata extraction
-- **NEW: Frame-specific GPS extraction for videos** - Captures GPS coordinates at the exact moment each face is detected
+- **Frame-specific GPS extraction for videos** - Captures GPS coordinates at the exact moment each face is detected
 - GPS and timestamp extraction from media files (supports GPMF format for GoPro/action cameras and standard MP4 metadata)
 - Face clustering to group similar faces across frames
 - Batch processing capabilities
-- IPFS integration for distributed storage
-- Blockchain logging via FireFly
+- **Blockchain provenance tracking** - Complete asset lineage via Maverix/FireFly
+- **IPFS storage** - Distributed storage for face chip bundles
+- **Video chip bundle generation** - Clean file paths with frame info in metadata
 - Support for multiple face detection models
 
 ## Project Structure
@@ -71,6 +72,54 @@ brew install ffmpeg  # On macOS
 
 # Install GPMF parser for GoPro videos
 pip install gpmf
+```
+
+## Quick Start Commands
+
+### Environment Setup
+```bash
+# Suppress TensorFlow warnings
+export TF_CPP_MIN_LOG_LEVEL=2
+export PYTHONWARNINGS="ignore"
+
+# Activate virtual environment
+source venv/bin/activate
+```
+
+### Test Commands
+```bash
+# Test image processing with blockchain
+python test_full_pipeline_blockchain.py data/input/Photos/people-collage-design.jpg
+
+# Test video processing with blockchain  
+python test_full_pipeline_blockchain.py data/input/test1.mp4
+
+# Test large video file
+python test_full_pipeline_blockchain.py data/input/test_stroll.mp4
+
+# Debug clustering on image directory
+python debug_clustering.py data/input/Photos
+```
+
+### Download Chip Bundles
+```bash
+# Get asset ID from test output, then download:
+curl "http://localhost:3000/provenance/assets/{ASSET_ID}/download" -o chips.zip
+
+# Extract and verify
+unzip chips.zip
+```
+
+### Useful Directories
+```bash
+# Clear previous test results  
+rm -rf test_output/*
+
+# Check generated chips
+ls -la test_output/person_*/
+
+# View clustering results
+cat test_output/manifest.json
 ```
 
 ## Usage

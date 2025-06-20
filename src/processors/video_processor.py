@@ -234,24 +234,30 @@ class VideoProcessor(MediaProcessorBase):
 
         # Generate chips and metadata for each detection
         chips_metadata = []
+        cluster_chip_counts = {}  # Track chip count per cluster for clean naming
+        
         for i, (frame_data, cluster_id) in enumerate(zip(frame_detections, cluster_ids)):
             try:
                 detection = frame_data["detection"]
                 frame = frame_data["frame"]
 
-                # Generate chip with cluster organization
+                # Generate clean chip filename like images (no frame info in path)
+                if cluster_id not in cluster_chip_counts:
+                    cluster_chip_counts[cluster_id] = 0
+                cluster_chip_counts[cluster_id] += 1
+                
                 chip_path = None
                 if save_chips and output_dir:
-                    cluster_dir = output_dir / cluster_id
-                    cluster_dir.mkdir(exist_ok=True)
-                    chip_path = cluster_dir / f"frame_{frame_data['frame_number']:06d}_chip_{i:03d}.jpg"
-
+                    # Pass the output directory, not the full file path
+                    # The chip generator will handle cluster organization
                     chip_data = self.chip_generator.generate_chip(
                         image=frame,
                         face_bbox=detection.bbox,
-                        output_path=chip_path,
+                        output_path=output_dir,
                         cluster_id=cluster_id
                     )
+                    # Get the actual path that was generated
+                    chip_path = chip_data.get('file_path')
                 else:
                     chip_data = self.chip_generator.generate_chip(
                         image=frame,
@@ -259,10 +265,10 @@ class VideoProcessor(MediaProcessorBase):
                         cluster_id=cluster_id
                     )
 
-                # Create comprehensive chip metadata with frame-specific GPS
+                # Create comprehensive chip metadata with frame info in metadata, not path
                 chip_metadata = self.metadata_extractor.create_chip_metadata(
                     source_file=video_path,
-                    chip_path=chip_path or f"frame_{frame_data['frame_number']:06d}_chip_{i:03d}.jpg",
+                    chip_path=chip_path or f"chip_{cluster_chip_counts[cluster_id]:03d}.jpg",
                     face_bbox=detection.bbox,
                     cluster_id=cluster_id,
                     confidence=detection.confidence,
