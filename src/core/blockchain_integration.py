@@ -296,7 +296,7 @@ class BlockchainIntegration:
             "analysisTimestamp": datetime.utcnow().isoformat() + "Z"
         }
         
-        # Determine topics
+        # Determine topics with strict limit enforcement
         topics = ["face_detected", "analysis_complete"]
         
         # Extract unique cluster IDs
@@ -304,8 +304,21 @@ class BlockchainIntegration:
         for chip in face_chips_metadata:
             if 'clusterId' in chip:
                 cluster_ids.add(chip['clusterId'])
-                
-        topics.extend([f"cluster_{cluster_id}" for cluster_id in cluster_ids])
+        
+        # Add cluster topics but strictly limit to avoid blockchain 15-topic limit
+        # Conservative limit: keep total topics under 10 to be safe
+        max_total_topics = 8  # Very conservative limit
+        available_slots = max_total_topics - len(topics)  # 6 slots available
+        cluster_topics = [f"cluster_{cluster_id}" for cluster_id in sorted(list(cluster_ids))[:available_slots]]
+        topics.extend(cluster_topics)
+        
+        # Log topics for debugging
+        logger.info(f"Topics being sent to blockchain ({len(topics)} total): {topics}")
+        
+        # Ensure we never exceed the limit
+        if len(topics) > max_total_topics:
+            topics = topics[:max_total_topics]
+            logger.warning(f"Topics truncated to {max_total_topics} to avoid blockchain limit")
         
         return await self.create_derived_asset(
             parent_id=parent_asset_id,
