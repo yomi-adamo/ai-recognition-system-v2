@@ -12,7 +12,7 @@ clustering:
   min_cluster_size: 1
   min_samples: 1
   recompute_interval: 1000
-  similarity_threshold: 0.95
+  similarity_threshold: 0.91
 face_detection:
   backend: face_recognition
   confidence_threshold: 0.7

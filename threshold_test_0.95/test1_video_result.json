@@ -1,0 +1,152 @@
+{
+  "file": "data/input/Videos/test1.mp4",
+  "type": "video",
+  "name": "test1",
+  "author": "facial-vision-system",
+  "timestamp": "2025-06-23T00:53:21.323402",
+  "parentId": "1be3cac2-1f91-4bbf-a216-0c6a5d0e6f0b",
+  "metadata": {
+    "source_metadata": {
+      "filename": "test1.mp4",
+      "file_path": "/home/oadamo1/code/facial-vision/data/input/Videos/test1.mp4",
+      "file_size": 22189332,
+      "creation_time": "2025-06-23T00:53:21.323402",
+      "modification_time": "2025-06-23T00:53:21.323402",
+      "timestamp": "2025-06-23T00:53:21.323402",
+      "video": {
+        "fps": 30.12862437322869,
+        "frame_count": 691,
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 22.935,
+        "codec": "h264"
+      }
+    },
+    "processing_stats": {
+      "total_frames_in_video": 691,
+      "frames_processed": 24,
+      "frames_with_faces": 3,
+      "total_face_detections": 3,
+      "clusters_assigned": 3,
+      "clustering_enabled": true,
+      "chips_generated": 3,
+      "fps": 30.12862437322869,
+      "duration_seconds": 22.935,
+      "frame_interval": 30
+    },
+    "video_info": {
+      "fps": 30.12862437322869,
+      "duration_seconds": 22.935,
+      "total_frames": 691,
+      "resolution": "1920x1080"
+    },
+    "chips": [
+      {
+        "file": "threshold_test_0.95/chips/person_35/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-23T00:53:21.323402",
+        "clusterId": "person_35",
+        "sourceFile": "data/input/Videos/test1.mp4",
+        "face_bounds": {
+          "x": 759,
+          "y": 92,
+          "w": 462,
+          "h": 462
+        },
+        "confidence": 0.9025,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "1be3cac2-1f91-4bbf-a216-0c6a5d0e6f0b",
+        "frameNumber": 120,
+        "videoTimestamp": "00:00:03.983",
+        "video_metadata": {
+          "fps": 30.12862437322869,
+          "duration_seconds": 22.935,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 213444,
+        "face_center": [
+          990,
+          323
+        ]
+      },
+      {
+        "file": "threshold_test_0.95/chips/person_24/chip_007.jpg",
+        "type": "image",
+        "name": "chip_007",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-23T00:53:21.323402",
+        "clusterId": "person_24",
+        "sourceFile": "data/input/Videos/test1.mp4",
+        "face_bounds": {
+          "x": 861,
+          "y": 400,
+          "w": 463,
+          "h": 462
+        },
+        "confidence": 0.9025,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "1be3cac2-1f91-4bbf-a216-0c6a5d0e6f0b",
+        "frameNumber": 450,
+        "videoTimestamp": "00:00:14.936",
+        "video_metadata": {
+          "fps": 30.12862437322869,
+          "duration_seconds": 22.935,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 213906,
+        "face_center": [
+          1092,
+          631
+        ]
+      },
+      {
+        "file": "threshold_test_0.95/chips/person_36/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-23T00:53:21.323402",
+        "clusterId": "person_36",
+        "sourceFile": "data/input/Videos/test1.mp4",
+        "face_bounds": {
+          "x": 972,
+          "y": 0,
+          "w": 555,
+          "h": 542
+        },
+        "confidence": 0.9025,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "1be3cac2-1f91-4bbf-a216-0c6a5d0e6f0b",
+        "frameNumber": 540,
+        "videoTimestamp": "00:00:17.923",
+        "video_metadata": {
+          "fps": 30.12862437322869,
+          "duration_seconds": 22.935,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 300810,
+        "face_center": [
+          1249,
+          271
+        ]
+      }
+    ]
+  },
+  "topics": [
+    "face_detected",
+    "video_analysis"
+  ]
+}

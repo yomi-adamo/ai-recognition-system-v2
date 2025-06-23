@@ -1,0 +1,129 @@
+{
+  "file": "data/input/Photos/yomi2.jpg",
+  "type": "image",
+  "name": "yomi2",
+  "author": "facial-vision-system",
+  "timestamp": "2023-05-16T15:04:09",
+  "parentId": null,
+  "metadata": {
+    "source_metadata": {
+      "filename": "yomi2.jpg",
+      "file_path": "/home/oadamo1/code/facial-vision/data/input/Photos/yomi2.jpg",
+      "file_size": 636586,
+      "creation_time": "2025-06-22T23:44:52.471547",
+      "modification_time": "2025-06-22T23:44:52.471547",
+      "timestamp": "2023-05-16T15:04:09",
+      "exif": {
+        "Image Make": "Apple",
+        "Image Model": "iPhone 12 mini",
+        "Image Orientation": "Horizontal (normal)",
+        "Image XResolution": "72",
+        "Image YResolution": "72",
+        "Image ResolutionUnit": "Pixels/Inch",
+        "Image Software": "16.1",
+        "Image DateTime": "2023:05:16 15:04:09",
+        "Image HostComputer": "iPhone 12 mini",
+        "Image TileWidth": "512",
+        "Image TileLength": "512",
+        "Image YCbCrPositioning": "Centered",
+        "Image ExifOffset": "250",
+        "EXIF ExposureTime": "1/120",
+        "EXIF FNumber": "8/5",
+        "EXIF ExposureProgram": "Program Normal",
+        "EXIF ISOSpeedRatings": "125",
+        "EXIF ExifVersion": "0232",
+        "EXIF DateTimeOriginal": "2023:05:16 15:04:09",
+        "EXIF DateTimeDigitized": "2023:05:16 15:04:09",
+        "EXIF OffsetTime": "-04:00",
+        "EXIF OffsetTimeOriginal": "-04:00",
+        "EXIF OffsetTimeDigitized": "-04:00",
+        "EXIF ComponentsConfiguration": "YCbCr",
+        "EXIF ShutterSpeedValue": "89123/12905",
+        "EXIF ApertureValue": "14447/10653",
+        "EXIF BrightnessValue": "88579/25392",
+        "EXIF ExposureBiasValue": "0",
+        "EXIF MeteringMode": "Pattern",
+        "EXIF Flash": "Flash did not fire, compulsory flash mode",
+        "EXIF FocalLength": "21/5",
+        "EXIF SubjectArea": "[992, 1706, 641, 642]",
+        "EXIF SubSecTimeOriginal": "380",
+        "EXIF SubSecTimeDigitized": "380",
+        "EXIF FlashPixVersion": "0100",
+        "EXIF ColorSpace": "Uncalibrated",
+        "EXIF ExifImageWidth": "4032",
+        "EXIF ExifImageLength": "3024",
+        "EXIF SensingMethod": "One-chip color area",
+        "EXIF SceneType": "Directly Photographed",
+        "EXIF ExposureMode": "Auto Exposure",
+        "EXIF WhiteBalance": "Auto",
+        "EXIF FocalLengthIn35mmFilm": "26",
+        "EXIF SceneCaptureType": "Standard",
+        "EXIF LensSpecification": "[1625285/1048571, 21/5, 8/5, 12/5]",
+        "EXIF LensMake": "Apple",
+        "EXIF LensModel": "iPhone 12 mini back dual wide camera 4.2mm f/1.6",
+        "EXIF Tag 0xA460": "2"
+      },
+      "camera": {
+        "make": "Apple",
+        "model": "iPhone 12 mini"
+      },
+      "device": {
+        "manufacturer": "Apple",
+        "model": "iPhone 12 mini",
+        "source": "exif",
+        "id": "Apple-iPhone-12-mini"
+      }
+    },
+    "processing_stats": {
+      "faces_detected": 1,
+      "clusters_assigned": 1,
+      "clustering_enabled": true,
+      "chips_generated": 1
+    },
+    "chips": [
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_25/chip_004.jpg",
+        "type": "image",
+        "name": "chip_004",
+        "author": "facial-vision-system",
+        "timestamp": "2023-05-16T15:04:09",
+        "clusterId": "person_25",
+        "sourceFile": "data/input/Photos/yomi2.jpg",
+        "face_bounds": {
+          "x": 451,
+          "y": 143,
+          "w": 462,
+          "h": 462
+        },
+        "confidence": 0.855,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "deviceId": "Apple-iPhone-12-mini",
+        "device": {
+          "manufacturer": "Apple",
+          "model": "iPhone 12 mini",
+          "source": "exif",
+          "id": "Apple-iPhone-12-mini"
+        },
+        "landmarks": null,
+        "face_area": 213444,
+        "face_center": [
+          682,
+          374
+        ]
+      }
+    ],
+    "device": {
+      "manufacturer": "Apple",
+      "model": "iPhone 12 mini",
+      "source": "exif",
+      "id": "Apple-iPhone-12-mini"
+    }
+  },
+  "topics": [
+    "face_detected",
+    "image_analysis"
+  ]
+}

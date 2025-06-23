@@ -1,0 +1,136 @@
+{
+  "file": "data/input/Photos/lady.jpg",
+  "type": "image",
+  "name": "lady",
+  "author": "facial-vision-system",
+  "timestamp": "2023-05-08T12:14:17",
+  "parentId": null,
+  "metadata": {
+    "source_metadata": {
+      "filename": "lady.jpg",
+      "file_path": "/home/oadamo1/code/facial-vision/data/input/Photos/lady.jpg",
+      "file_size": 15851468,
+      "creation_time": "2025-06-23T00:01:18.879344",
+      "modification_time": "2025-06-23T00:01:18.879344",
+      "timestamp": "2023-05-08T12:14:17",
+      "exif": {
+        "Image ImageWidth": "6022",
+        "Image ImageLength": "8000",
+        "Image BitsPerSample": "[8, 8, 8]",
+        "Image PhotometricInterpretation": "2",
+        "Image Make": "Canon",
+        "Image Model": "Canon EOS R",
+        "Image Orientation": "Horizontal (normal)",
+        "Image SamplesPerPixel": "3",
+        "Image XResolution": "300",
+        "Image YResolution": "300",
+        "Image ResolutionUnit": "Pixels/Inch",
+        "Image Software": "Adobe Photoshop 22.5 (Macintosh)",
+        "Image DateTime": "2023:05:31 17:19:50",
+        "Image Artist": "maksim goncharenok",
+        "Image Copyright": "maksgelatin",
+        "Image ExifOffset": "332",
+        "Thumbnail Compression": "JPEG (old-style)",
+        "Thumbnail XResolution": "72",
+        "Thumbnail YResolution": "72",
+        "Thumbnail ResolutionUnit": "Pixels/Inch",
+        "Thumbnail JPEGInterchangeFormat": "1042",
+        "Thumbnail JPEGInterchangeFormatLength": "3856",
+        "EXIF ExposureTime": "1/350",
+        "EXIF FNumber": "14/5",
+        "EXIF ExposureProgram": "Manual",
+        "EXIF ISOSpeedRatings": "100",
+        "EXIF SensitivityType": "Recommended Exposure Index",
+        "EXIF RecommendedExposureIndex": "100",
+        "EXIF ExifVersion": "0231",
+        "EXIF DateTimeOriginal": "2023:05:08 12:14:17",
+        "EXIF DateTimeDigitized": "2023:05:08 12:14:17",
+        "EXIF OffsetTime": "+02:00",
+        "EXIF OffsetTimeOriginal": "+03:00",
+        "EXIF ShutterSpeedValue": "8451211/1000000",
+        "EXIF ApertureValue": "1485427/500000",
+        "EXIF ExposureBiasValue": "0",
+        "EXIF MaxApertureValue": "7/4",
+        "EXIF MeteringMode": "Pattern",
+        "EXIF Flash": "Flash did not fire",
+        "EXIF FocalLength": "35",
+        "EXIF SubSecTimeOriginal": "94",
+        "EXIF ColorSpace": "Uncalibrated",
+        "EXIF ExifImageWidth": "6022",
+        "EXIF ExifImageLength": "8000",
+        "EXIF FocalPlaneXResolution": "61166933/32768",
+        "EXIF FocalPlaneYResolution": "61166933/32768",
+        "EXIF FocalPlaneResolutionUnit": "3",
+        "EXIF CustomRendered": "Normal",
+        "EXIF ExposureMode": "Manual Exposure",
+        "EXIF WhiteBalance": "Manual",
+        "EXIF SceneCaptureType": "Standard",
+        "EXIF BodySerialNumber": "208027001813",
+        "EXIF LensSpecification": "[35, 35, 0/0, 0/0]",
+        "EXIF LensModel": "RF35mm F1.8 MACRO IS STM",
+        "EXIF LensSerialNumber": "0000000000"
+      },
+      "camera": {
+        "make": "Canon",
+        "model": "Canon EOS R"
+      },
+      "device": {
+        "manufacturer": "Canon",
+        "model": "Canon EOS R",
+        "source": "exif",
+        "id": "Canon-Canon-EOS-R"
+      }
+    },
+    "processing_stats": {
+      "faces_detected": 1,
+      "clusters_assigned": 1,
+      "clustering_enabled": true,
+      "chips_generated": 1
+    },
+    "chips": [
+      {
+        "file": "threshold_test_0.95/chips/person_26/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2023-05-08T12:14:17",
+        "clusterId": "person_26",
+        "sourceFile": "data/input/Photos/lady.jpg",
+        "face_bounds": {
+          "x": 1988,
+          "y": 1436,
+          "w": 1656,
+          "h": 1656
+        },
+        "confidence": 0.855,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "deviceId": "Canon-Canon-EOS-R",
+        "device": {
+          "manufacturer": "Canon",
+          "model": "Canon EOS R",
+          "source": "exif",
+          "id": "Canon-Canon-EOS-R"
+        },
+        "landmarks": null,
+        "face_area": 2742336,
+        "face_center": [
+          2816,
+          2264
+        ]
+      }
+    ],
+    "device": {
+      "manufacturer": "Canon",
+      "model": "Canon EOS R",
+      "source": "exif",
+      "id": "Canon-Canon-EOS-R"
+    }
+  },
+  "topics": [
+    "face_detected",
+    "image_analysis"
+  ]
+}

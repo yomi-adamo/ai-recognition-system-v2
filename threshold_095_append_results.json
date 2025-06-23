@@ -1,0 +1,38 @@
+[
+  {
+    "image": "group.jpg",
+    "faces_detected": 0,
+    "cluster_assignments": [],
+    "total_clusters": 25
+  },
+  {
+    "image": "yomi1.jpg",
+    "faces_detected": 0,
+    "cluster_assignments": [],
+    "total_clusters": 25
+  },
+  {
+    "image": "yomi2.jpg",
+    "faces_detected": 0,
+    "cluster_assignments": [],
+    "total_clusters": 25
+  },
+  {
+    "image": "yomi3.jpg",
+    "faces_detected": 0,
+    "cluster_assignments": [],
+    "total_clusters": 25
+  },
+  {
+    "image": "yomi4.jpg",
+    "faces_detected": 0,
+    "cluster_assignments": [],
+    "total_clusters": 25
+  },
+  {
+    "image": "yomi5.jpg",
+    "faces_detected": 0,
+    "cluster_assignments": [],
+    "total_clusters": 25
+  }
+]

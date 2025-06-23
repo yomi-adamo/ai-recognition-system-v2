@@ -1,0 +1,38 @@
+{
+  "timestamp": "2025-06-22T23:57:23.514242",
+  "test_results": {
+    "faces_detected": 3,
+    "clusters_created": 3,
+    "cluster_distribution": {
+      "person_1": 1,
+      "person_2": 1,
+      "person_3": 1
+    }
+  },
+  "cluster_details": {
+    "person_1": [
+      {
+        "bbox": null,
+        "confidence": 0.8075,
+        "chipPath": null
+      }
+    ],
+    "person_2": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_3": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ]
+  },
+  "potential_issues": [
+    "Too many clusters - possibly over-separating similar faces"
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "file": "data/input/Photos/yomi5.jpg",
+  "type": "image",
+  "name": "yomi5",
+  "author": "facial-vision-system",
+  "timestamp": "2023-02-20T17:43:03",
+  "parentId": null,
+  "metadata": {
+    "source_metadata": {
+      "filename": "yomi5.jpg",
+      "file_path": "/home/oadamo1/code/facial-vision/data/input/Photos/yomi5.jpg",
+      "file_size": 870378,
+      "creation_time": "2025-06-22T23:44:58.608328",
+      "modification_time": "2025-06-22T23:44:58.608328",
+      "timestamp": "2023-02-20T17:43:03",
+      "exif": {
+        "Image Make": "Apple",
+        "Image Model": "iPhone XR",
+        "Image Orientation": "Horizontal (normal)",
+        "Image XResolution": "72",
+        "Image YResolution": "72",
+        "Image ResolutionUnit": "Pixels/Inch",
+        "Image Software": "16.2",
+        "Image DateTime": "2023:02:20 17:43:03",
+        "Image HostComputer": "iPhone XR",
+        "Image YCbCrPositioning": "Centered",
+        "Image ExifOffset": "226",
+        "GPS GPSLatitudeRef": "N",
+        "GPS GPSLatitude": "[39, 17, 47/25]",
+        "GPS GPSLongitudeRef": "W",
+        "GPS GPSLongitude": "[77, 12, 859/20]",
+        "GPS GPSAltitudeRef": "0",
+        "GPS GPSAltitude": "422159/1746",
+        "GPS GPSSpeedRef": "K",
+        "GPS GPSSpeed": "0",
+        "GPS GPSImgDirectionRef": "T",
+        "GPS GPSImgDirection": "522280/1511",
+        "GPS GPSDestBearingRef": "T",
+        "GPS GPSDestBearing": "522280/1511",
+        "GPS Tag 0x001F": "91304/17983",
+        "Image GPSInfo": "2198",
+        "Thumbnail Compression": "JPEG (old-style)",
+        "Thumbnail XResolution": "72",
+        "Thumbnail YResolution": "72",
+        "Thumbnail ResolutionUnit": "Pixels/Inch",
+        "Thumbnail JPEGInterchangeFormat": "2542",
+        "Thumbnail JPEGInterchangeFormatLength": "5280",
+        "EXIF ExposureTime": "1/24",
+        "EXIF FNumber": "9/5",
+        "EXIF ExposureProgram": "Program Normal",
+        "EXIF ISOSpeedRatings": "640",
+        "EXIF ExifVersion": "0232",
+        "EXIF DateTimeOriginal": "2023:02:20 17:43:03",
+        "EXIF DateTimeDigitized": "2023:02:20 17:43:03",
+        "EXIF OffsetTime": "-05:00",
+        "EXIF OffsetTimeOriginal": "-05:00",
+        "EXIF OffsetTimeDigitized": "-05:00",
+        "EXIF ComponentsConfiguration": "YCbCr",
+        "EXIF ShutterSpeedValue": "49919/10887",
+        "EXIF ApertureValue": "54823/32325",
+        "EXIF BrightnessValue": "-8899/17360",
+        "EXIF ExposureBiasValue": "0",
+        "EXIF MeteringMode": "Pattern",
+        "EXIF Flash": "Flash did not fire, compulsory flash mode",
+        "EXIF FocalLength": "17/4",
+        "EXIF SubjectArea": "[1552, 1609, 830, 831]",
+        "EXIF SubSecTimeOriginal": "225",
+        "EXIF SubSecTimeDigitized": "225",
+        "EXIF FlashPixVersion": "0100",
+        "EXIF ColorSpace": "Uncalibrated",
+        "EXIF ExifImageWidth": "2751",
+        "EXIF ExifImageLength": "3193",
+        "EXIF SensingMethod": "One-chip color area",
+        "EXIF SceneType": "Directly Photographed",
+        "EXIF CustomRendered": "8",
+        "EXIF ExposureMode": "Auto Exposure",
+        "EXIF WhiteBalance": "Auto",
+        "EXIF FocalLengthIn35mmFilm": "26",
+        "EXIF SceneCaptureType": "Standard",
+        "EXIF LensSpecification": "[17/4, 17/4, 9/5, 9/5]",
+        "EXIF LensMake": "Apple",
+        "EXIF LensModel": "iPhone XR back camera 4.25mm f/1.8",
+        "EXIF Tag 0xA460": "2"
+      },
+      "camera": {
+        "make": "Apple",
+        "model": "iPhone XR"
+      },
+      "gps": {
+        "lat": 39.283855555555554,
+        "lon": -77.21193055555555,
+        "altitude": 422159.0
+      },
+      "device": {
+        "manufacturer": "Apple",
+        "model": "iPhone XR",
+        "source": "exif",
+        "id": "Apple-iPhone-XR"
+      }
+    },
+    "processing_stats": {
+      "faces_detected": 1,
+      "clusters_assigned": 1,
+      "clustering_enabled": true,
+      "chips_generated": 1
+    },
+    "chips": [
+      {
+        "file": "clustering_tests_threshold_91/test_20250622_235718/chips/person_2/chip_002.jpg",
+        "type": "image",
+        "name": "chip_002",
+        "author": "facial-vision-system",
+        "timestamp": "2023-02-20T17:43:03",
+        "clusterId": "person_2",
+        "sourceFile": "data/input/Photos/yomi5.jpg",
+        "face_bounds": {
+          "x": 936,
+          "y": 724,
+          "w": 959,
+          "h": 958
+        },
+        "confidence": 0.9025,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "deviceId": "Apple-iPhone-XR",
+        "device": {
+          "manufacturer": "Apple",
+          "model": "iPhone XR",
+          "source": "exif",
+          "id": "Apple-iPhone-XR"
+        },
+        "gps": {
+          "lat": 39.283855555555554,
+          "lon": -77.21193055555555,
+          "altitude": 422159.0
+        },
+        "landmarks": null,
+        "face_area": 918722,
+        "face_center": [
+          1415,
+          1203
+        ]
+      }
+    ],
+    "GPS": {
+      "lat": 39.283855555555554,
+      "lon": -77.21193055555555,
+      "altitude": 422159.0
+    },
+    "device": {
+      "manufacturer": "Apple",
+      "model": "iPhone XR",
+      "source": "exif",
+      "id": "Apple-iPhone-XR"
+    }
+  },
+  "topics": [
+    "face_detected",
+    "image_analysis"
+  ]
+}

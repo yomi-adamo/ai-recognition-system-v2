@@ -1,0 +1,657 @@
+{
+  "file": "data/input/Photos/people-collage-design.jpg",
+  "type": "image",
+  "name": "people-collage-design",
+  "author": "facial-vision-system",
+  "timestamp": "2025-06-22T23:13:08.607808",
+  "parentId": null,
+  "metadata": {
+    "source_metadata": {
+      "filename": "people-collage-design.jpg",
+      "file_path": "/home/oadamo1/code/facial-vision/data/input/Photos/people-collage-design.jpg",
+      "file_size": 605975,
+      "creation_time": "2025-06-22T23:12:10.700549",
+      "modification_time": "2025-06-22T22:37:01.380620",
+      "timestamp": "2025-06-22T23:13:08.607808",
+      "exif": {
+        "Image Copyright": "Freepik Company S.L. - www.freepik.com"
+      }
+    },
+    "processing_stats": {
+      "faces_detected": 24,
+      "clusters_assigned": 23,
+      "clustering_enabled": true,
+      "chips_generated": 24
+    },
+    "chips": [
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_1/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.363679",
+        "clusterId": "person_1",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1096,
+          "y": 1509,
+          "w": 154,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 23870,
+        "face_center": [
+          1173,
+          1586
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_2/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.364131",
+        "clusterId": "person_2",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1096,
+          "y": 167,
+          "w": 154,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 23870,
+        "face_center": [
+          1173,
+          244
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_3/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.364500",
+        "clusterId": "person_3",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 648,
+          "y": 116,
+          "w": 155,
+          "h": 154
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 23870,
+        "face_center": [
+          725,
+          193
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_4/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.364856",
+        "clusterId": "person_4",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 182,
+          "y": 1974,
+          "w": 129,
+          "h": 129
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 16641,
+        "face_center": [
+          246,
+          2038
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_5/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.365290",
+        "clusterId": "person_5",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1594,
+          "y": 133,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          1671,
+          210
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_6/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.365661",
+        "clusterId": "person_6",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1113,
+          "y": 1062,
+          "w": 155,
+          "h": 154
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 23870,
+        "face_center": [
+          1190,
+          1139
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_7/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.366026",
+        "clusterId": "person_7",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1560,
+          "y": 1044,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          1637,
+          1121
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_8/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.366363",
+        "clusterId": "person_8",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 2041,
+          "y": 1543,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          2118,
+          1620
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_9/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.366684",
+        "clusterId": "person_9",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 614,
+          "y": 2042,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          691,
+          2119
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_10/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.367012",
+        "clusterId": "person_10",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 218,
+          "y": 1526,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          295,
+          1603
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_11/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.367326",
+        "clusterId": "person_11",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 614,
+          "y": 1044,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          691,
+          1121
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_12/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.367633",
+        "clusterId": "person_12",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1990,
+          "y": 614,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          2067,
+          691
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_13/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.367954",
+        "clusterId": "person_13",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1577,
+          "y": 580,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          1654,
+          657
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_2/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.368278",
+        "clusterId": "person_2",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 2059,
+          "y": 1099,
+          "w": 129,
+          "h": 129
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 16641,
+        "face_center": [
+          2123,
+          1163
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_14/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.368590",
+        "clusterId": "person_14",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1583,
+          "y": 1481,
+          "w": 186,
+          "h": 185
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 34410,
+        "face_center": [
+          1676,
+          1573
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_15/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.368898",
+        "clusterId": "person_15",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1572,
+          "y": 1974,
+          "w": 129,
+          "h": 129
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 16641,
+        "face_center": [
+          1636,
+          2038
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_16/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.369235",
+        "clusterId": "person_16",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 139,
+          "y": 98,
+          "w": 185,
+          "h": 186
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 34410,
+        "face_center": [
+          231,
+          191
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_17/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.369574",
+        "clusterId": "person_17",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 648,
+          "y": 580,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          725,
+          657
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_18/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.369906",
+        "clusterId": "person_18",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 597,
+          "y": 1526,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          674,
+          1603
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_19/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.370229",
+        "clusterId": "person_19",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1150,
+          "y": 552,
+          "w": 186,
+          "h": 186
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 34596,
+        "face_center": [
+          1243,
+          645
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_20/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.370549",
+        "clusterId": "person_20",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 1061,
+          "y": 1973,
+          "w": 155,
+          "h": 155
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 24025,
+        "face_center": [
+          1138,
+          2050
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_21/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.370894",
+        "clusterId": "person_21",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 77,
+          "y": 593,
+          "w": 185,
+          "h": 186
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 34410,
+        "face_center": [
+          169,
+          686
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_22/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.371252",
+        "clusterId": "person_22",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 2059,
+          "y": 2017,
+          "w": 129,
+          "h": 129
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 16641,
+        "face_center": [
+          2123,
+          2081
+        ]
+      },
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_23/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-22T23:13:12.371593",
+        "clusterId": "person_23",
+        "sourceFile": "data/input/Photos/people-collage-design.jpg",
+        "face_bounds": {
+          "x": 2099,
+          "y": 57,
+          "w": 186,
+          "h": 185
+        },
+        "confidence": 0.76,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "landmarks": null,
+        "face_area": 34410,
+        "face_center": [
+          2192,
+          149
+        ]
+      }
+    ]
+  },
+  "topics": [
+    "face_detected",
+    "image_analysis"
+  ]
+}

@@ -1,0 +1,163 @@
+{
+  "file": "data/input/Photos/yomi3.jpg",
+  "type": "image",
+  "name": "yomi3",
+  "author": "facial-vision-system",
+  "timestamp": "2023-10-18T19:22:45",
+  "parentId": null,
+  "metadata": {
+    "source_metadata": {
+      "filename": "yomi3.jpg",
+      "file_path": "/home/oadamo1/code/facial-vision/data/input/Photos/yomi3.jpg",
+      "file_size": 2542803,
+      "creation_time": "2025-06-22T23:44:55.083880",
+      "modification_time": "2025-06-22T23:44:55.083880",
+      "timestamp": "2023-10-18T19:22:45",
+      "exif": {
+        "Image Make": "Apple",
+        "Image Model": "iPhone 11",
+        "Image Orientation": "Rotated 90 CW",
+        "Image XResolution": "72",
+        "Image YResolution": "72",
+        "Image ResolutionUnit": "Pixels/Inch",
+        "Image Software": "17.0.3",
+        "Image DateTime": "2023:10:18 19:22:45",
+        "Image HostComputer": "iPhone 11",
+        "Image YCbCrPositioning": "Centered",
+        "Image ExifOffset": "228",
+        "GPS GPSLatitudeRef": "N",
+        "GPS GPSLatitude": "[39, 5, 1262/25]",
+        "GPS GPSLongitudeRef": "W",
+        "GPS GPSLongitude": "[77, 9, 1421/100]",
+        "GPS GPSAltitudeRef": "0",
+        "GPS GPSAltitude": "379750/2713",
+        "GPS GPSTimeStamp": "[23, 22, 39]",
+        "GPS GPSSpeedRef": "K",
+        "GPS GPSSpeed": "6058/102021",
+        "GPS GPSImgDirectionRef": "T",
+        "GPS GPSImgDirection": "159313/2393",
+        "GPS GPSDestBearingRef": "T",
+        "GPS GPSDestBearing": "159313/2393",
+        "GPS GPSDate": "2023:10:18",
+        "GPS Tag 0x001F": "157657/14896",
+        "Image GPSInfo": "2394",
+        "Thumbnail Compression": "JPEG (old-style)",
+        "Thumbnail XResolution": "72",
+        "Thumbnail YResolution": "72",
+        "Thumbnail ResolutionUnit": "Pixels/Inch",
+        "Thumbnail JPEGInterchangeFormat": "2798",
+        "Thumbnail JPEGInterchangeFormatLength": "5993",
+        "EXIF ExposureTime": "1/6",
+        "EXIF FNumber": "9/5",
+        "EXIF ExposureProgram": "Program Normal",
+        "EXIF ISOSpeedRatings": "32",
+        "EXIF ExifVersion": "0232",
+        "EXIF DateTimeOriginal": "2023:10:18 19:22:45",
+        "EXIF DateTimeDigitized": "2023:10:18 19:22:45",
+        "EXIF OffsetTime": "-04:00",
+        "EXIF OffsetTimeOriginal": "-04:00",
+        "EXIF OffsetTimeDigitized": "-04:00",
+        "EXIF ComponentsConfiguration": "YCbCr",
+        "EXIF ShutterSpeedValue": "253426/100183",
+        "EXIF ApertureValue": "54823/32325",
+        "EXIF BrightnessValue": "18998/24055",
+        "EXIF ExposureBiasValue": "0",
+        "EXIF MeteringMode": "Pattern",
+        "EXIF Flash": "Flash fired, compulsory flash mode",
+        "EXIF FocalLength": "17/4",
+        "EXIF SubjectArea": "[1992, 1495, 2202, 1383]",
+        "EXIF SubSecTimeOriginal": "766",
+        "EXIF SubSecTimeDigitized": "766",
+        "EXIF FlashPixVersion": "0100",
+        "EXIF ColorSpace": "Uncalibrated",
+        "EXIF ExifImageWidth": "4032",
+        "EXIF ExifImageLength": "3024",
+        "EXIF SensingMethod": "One-chip color area",
+        "EXIF SceneType": "Directly Photographed",
+        "EXIF ExposureMode": "Auto Exposure",
+        "EXIF WhiteBalance": "Auto",
+        "EXIF FocalLengthIn35mmFilm": "26",
+        "EXIF SceneCaptureType": "Standard",
+        "EXIF LensSpecification": "[807365/524263, 17/4, 9/5, 12/5]",
+        "EXIF LensMake": "Apple",
+        "EXIF LensModel": "iPhone 11 back dual wide camera 4.25mm f/1.8"
+      },
+      "camera": {
+        "make": "Apple",
+        "model": "iPhone 11"
+      },
+      "gps": {
+        "lat": 39.09735555555556,
+        "lon": -77.15394722222223,
+        "altitude": 379750.0
+      },
+      "device": {
+        "manufacturer": "Apple",
+        "model": "iPhone 11",
+        "source": "exif",
+        "id": "Apple-iPhone-11"
+      }
+    },
+    "processing_stats": {
+      "faces_detected": 1,
+      "clusters_assigned": 1,
+      "clustering_enabled": true,
+      "chips_generated": 1
+    },
+    "chips": [
+      {
+        "file": "clustering_tests/test_20250622_231308/chips/person_25/chip_005.jpg",
+        "type": "image",
+        "name": "chip_005",
+        "author": "facial-vision-system",
+        "timestamp": "2023-10-18T19:22:45",
+        "clusterId": "person_25",
+        "sourceFile": "data/input/Photos/yomi3.jpg",
+        "face_bounds": {
+          "x": 583,
+          "y": 1350,
+          "w": 1380,
+          "h": 1380
+        },
+        "confidence": 0.9025,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "deviceId": "Apple-iPhone-11",
+        "device": {
+          "manufacturer": "Apple",
+          "model": "iPhone 11",
+          "source": "exif",
+          "id": "Apple-iPhone-11"
+        },
+        "gps": {
+          "lat": 39.09735555555556,
+          "lon": -77.15394722222223,
+          "altitude": 379750.0
+        },
+        "landmarks": null,
+        "face_area": 1904400,
+        "face_center": [
+          1273,
+          2040
+        ]
+      }
+    ],
+    "GPS": {
+      "lat": 39.09735555555556,
+      "lon": -77.15394722222223,
+      "altitude": 379750.0
+    },
+    "device": {
+      "manufacturer": "Apple",
+      "model": "iPhone 11",
+      "source": "exif",
+      "id": "Apple-iPhone-11"
+    }
+  },
+  "topics": [
+    "face_detected",
+    "image_analysis"
+  ]
+}

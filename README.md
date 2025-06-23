@@ -101,6 +101,27 @@ python test_full_pipeline_blockchain.py data/input/test_stroll.mp4
 python debug_clustering.py data/input/Photos
 ```
 
+### Face Clustering Tests
+```bash
+# Test clustering accuracy on people-collage-design.jpg
+python test_clustering_accuracy.py
+
+# Test clustering with additional images
+python test_clustering_append.py --image data/input/Photos/group.jpg --test-dir threshold_test_0.95
+
+# Test clustering with videos
+python test_clustering_append_video.py --video data/input/Videos/test1.mp4 --test-dir threshold_test_0.95
+
+# Test multiple threshold values for clustering optimization
+python test_threshold_analysis.py
+
+# Batch test multiple images
+python test_clustering_batch.py
+
+# Test glasses tolerance (same person with/without glasses)
+python test_glasses_tolerance.py
+```
+
 ### Download Chip Bundles
 ```bash
 # Get asset ID from test output, then download:

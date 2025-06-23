@@ -1,0 +1,27 @@
+[
+  {
+    "threshold": 0.95,
+    "clusters": 22,
+    "test_dir": "threshold_test_0.95"
+  },
+  {
+    "threshold": 0.96,
+    "clusters": 22,
+    "test_dir": "threshold_test_0.96"
+  },
+  {
+    "threshold": 0.97,
+    "clusters": 22,
+    "test_dir": "threshold_test_0.97"
+  },
+  {
+    "threshold": 0.98,
+    "clusters": 22,
+    "test_dir": "threshold_test_0.98"
+  },
+  {
+    "threshold": 0.99,
+    "clusters": 22,
+    "test_dir": "threshold_test_0.99"
+  }
+]

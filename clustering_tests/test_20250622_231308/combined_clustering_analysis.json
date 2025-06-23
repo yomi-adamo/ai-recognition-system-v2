@@ -1,0 +1,134 @@
+{
+  "timestamp": "2025-06-22T23:50:29.951634",
+  "total_clusters": 27,
+  "cluster_distribution": {
+    "person_6": 1,
+    "person_10": 1,
+    "person_20": 1,
+    "person_2": 2,
+    "person_5": 1,
+    "person_23": 1,
+    "person_13": 1,
+    "person_16": 1,
+    "person_25": 5,
+    "person_7": 1,
+    "person_15": 1,
+    "person_21": 1,
+    "person_26": 1,
+    "person_8": 1,
+    "person_3": 1,
+    "person_1": 1,
+    "person_9": 1,
+    "person_11": 1,
+    "person_19": 1,
+    "person_4": 1,
+    "person_22": 1,
+    "person_27": 1,
+    "person_17": 1,
+    "person_12": 1,
+    "person_18": 1,
+    "person_14": 1,
+    "person_24": 1
+  },
+  "cluster_sources": {
+    "person_25": [
+      "yomi2.jpg",
+      "group.jpg",
+      "yomi3.jpg",
+      "yomi1.jpg",
+      "yomi5.jpg"
+    ],
+    "person_24": [
+      "group.jpg"
+    ],
+    "person_26": [
+      "group.jpg"
+    ],
+    "person_27": [
+      "yomi4.jpg"
+    ],
+    "person_1": [
+      "people-collage-design.jpg"
+    ],
+    "person_2": [
+      "people-collage-design.jpg"
+    ],
+    "person_3": [
+      "people-collage-design.jpg"
+    ],
+    "person_4": [
+      "people-collage-design.jpg"
+    ],
+    "person_5": [
+      "people-collage-design.jpg"
+    ],
+    "person_6": [
+      "people-collage-design.jpg"
+    ],
+    "person_7": [
+      "people-collage-design.jpg"
+    ],
+    "person_8": [
+      "people-collage-design.jpg"
+    ],
+    "person_9": [
+      "people-collage-design.jpg"
+    ],
+    "person_10": [
+      "people-collage-design.jpg"
+    ],
+    "person_11": [
+      "people-collage-design.jpg"
+    ],
+    "person_12": [
+      "people-collage-design.jpg"
+    ],
+    "person_13": [
+      "people-collage-design.jpg"
+    ],
+    "person_14": [
+      "people-collage-design.jpg"
+    ],
+    "person_15": [
+      "people-collage-design.jpg"
+    ],
+    "person_16": [
+      "people-collage-design.jpg"
+    ],
+    "person_17": [
+      "people-collage-design.jpg"
+    ],
+    "person_18": [
+      "people-collage-design.jpg"
+    ],
+    "person_19": [
+      "people-collage-design.jpg"
+    ],
+    "person_20": [
+      "people-collage-design.jpg"
+    ],
+    "person_21": [
+      "people-collage-design.jpg"
+    ],
+    "person_22": [
+      "people-collage-design.jpg"
+    ],
+    "person_23": [
+      "people-collage-design.jpg"
+    ]
+  },
+  "multi_image_clusters": [
+    {
+      "cluster_id": "person_25",
+      "face_count": 5,
+      "source_images": [
+        "yomi2.jpg",
+        "group.jpg",
+        "yomi3.jpg",
+        "yomi1.jpg",
+        "yomi5.jpg"
+      ]
+    }
+  ],
+  "potential_misclassifications": 1
+}

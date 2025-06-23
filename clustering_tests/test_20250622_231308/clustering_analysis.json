@@ -1,0 +1,203 @@
+{
+  "timestamp": "2025-06-22T23:13:12.372818",
+  "test_results": {
+    "faces_detected": 24,
+    "clusters_created": 23,
+    "cluster_distribution": {
+      "person_1": 1,
+      "person_2": 2,
+      "person_3": 1,
+      "person_4": 1,
+      "person_5": 1,
+      "person_6": 1,
+      "person_7": 1,
+      "person_8": 1,
+      "person_9": 1,
+      "person_10": 1,
+      "person_11": 1,
+      "person_12": 1,
+      "person_13": 1,
+      "person_14": 1,
+      "person_15": 1,
+      "person_16": 1,
+      "person_17": 1,
+      "person_18": 1,
+      "person_19": 1,
+      "person_20": 1,
+      "person_21": 1,
+      "person_22": 1,
+      "person_23": 1
+    }
+  },
+  "cluster_details": {
+    "person_1": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_2": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      },
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_3": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_4": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_5": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_6": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_7": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_8": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_9": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_10": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_11": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_12": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_13": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_14": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_15": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_16": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_17": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_18": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_19": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_20": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_21": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_22": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ],
+    "person_23": [
+      {
+        "bbox": null,
+        "confidence": 0.76,
+        "chipPath": null
+      }
+    ]
+  },
+  "potential_issues": [
+    "Too many clusters - possibly over-separating similar faces"
+  ]
+}
