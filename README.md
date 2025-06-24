@@ -6,7 +6,8 @@ A backend system for detecting and recognizing faces in images and videos, outpu
 
 - Face detection in images and videos
 - Automatic face cropping and metadata extraction
-- **Frame-specific GPS extraction for videos** - Captures GPS coordinates at the exact moment each face is detected
+- **GPS coordinate extraction from video overlays using OCR** - Reads GPS coordinates directly from camera overlay text (e.g., AXIS W120 body cameras)
+- Frame-specific GPS extraction for videos - Captures GPS coordinates at the exact moment each face is detected
 - GPS and timestamp extraction from media files (supports GPMF format for GoPro/action cameras and standard MP4 metadata)
 - Face clustering to group similar faces across frames
 - Batch processing capabilities
@@ -63,14 +64,19 @@ venv\Scripts\activate  # On Windows
 pip install -r requirements.txt
 ```
 
-4. (Optional) For GPS extraction from videos:
+4. For GPS extraction from videos:
 ```bash
+# Install Tesseract OCR for reading GPS overlays
+sudo apt-get install tesseract-ocr  # On Ubuntu/Debian
+# or
+brew install tesseract  # On macOS
+
 # Install ffprobe for video metadata extraction
 sudo apt-get install ffmpeg  # On Ubuntu/Debian
 # or
 brew install ffmpeg  # On macOS
 
-# Install GPMF parser for GoPro videos
+# Install GPMF parser for GoPro videos (optional)
 pip install gpmf
 ```
 
@@ -150,9 +156,13 @@ cat test_output/manifest.json
 python scripts/process_folder.py --input data/input/image.jpg
 ```
 
-### Process a video:
+### Process a video with GPS extraction:
 ```bash
-python scripts/process_video.py --input data/input/video.mp4
+# Basic video processing
+python scripts/process_video.py data/input/Videos/video.mp4 --output-dir data/output
+
+# Process video with GPS overlay extraction (e.g., AXIS W120 body camera)
+python scripts/process_video.py data/input/Videos/location_test.mp4 --frame-interval 30 --output-dir data/output/gps_test
 ```
 
 ### Process a folder of images:
@@ -188,28 +198,29 @@ The system outputs JSON files with the following structure:
 }
 ```
 
-### For Videos (with frame-specific GPS):
+### For Videos (with GPS overlay extraction):
 ```json
 {
-    "file": "face_chip_path.jpg",
+    "file": "data/output/gps_test/video_processing_20250624_085532/person_4/chip_001.jpg",
     "type": "image",
-    "name": "frame_000300_chip_000",
-    "clusterId": "person_1",
-    "timestamp": "2024-01-15T10:30:00Z",
-    "videoTimestamp": "00:00:09.971",
-    "frameNumber": 300,
+    "name": "chip_001",
+    "clusterId": "person_4",
+    "timestamp": "2024-06-24T08:55:53.436Z",
+    "videoTimestamp": "00:00:23.903",
+    "frameNumber": 718,
     "gps": {
-        "lat": 40.7128,
-        "lon": -74.0060,
-        "alt": 100.5,
-        "timestamp": "2024-01-15T10:30:09.971Z"
+        "lat": 38.9549,
+        "lon": -77.412
     },
-    "metadata": {
-        "confidence": 0.95,
-        "face_bounds": {"x": 808, "y": 928, "w": 107, "h": 107}
-    }
+    "confidence": 0.8945,
+    "face_bounds": {"x": 808, "y": 928, "w": 107, "h": 107}
 }
 ```
+
+**Note**: GPS coordinates are extracted using OCR from camera overlay text. Supported formats include:
+- Decimal degrees: `38.9549, -77.4120`
+- Degree format: `38.9549° -77.4120°`
+- N/S E/W format: `38.9549N 77.4120W`
 
 ## Development
 
