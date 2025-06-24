@@ -58,13 +58,397 @@
 
 ## 🧩 Phase 5: Extended Detection Modules
 
-Look at Facial Vision System Extensions for specifics on the implementations.
+### 5.1 Architecture Overview
 
-- [ ] Implement `tattoo_detector.py`
-- [ ] Create `license_plate_reader.py` with OCR
-- [ ] Build `vehicle_detector.py` classifier
-- [ ] Implement `voice_transcriber.py` (audio-to-text)
-- [ ] Create unified multi-modal detection pipeline
+**Goal**: Extend the facial recognition system to support multi-modal detection (tattoos, license plates, vehicles, audio transcription) with unified blockchain integration.
+
+**Design Philosophy**:
+- Each detection type creates a separate derived asset linked to the original video/image
+- Consistent metadata structure across all detection types
+- Unified processing pipeline with modular detector components
+- CPU and GPU implementation paths for different deployment scenarios
+
+### 5.2 Core Infrastructure
+
+- [ ] **Create `multi_detector_manager.py`** - Central coordinator for all detection modules
+  - Manages detector registration and lifecycle
+  - Handles unified configuration and resource allocation
+  - Provides common interfaces for all detection types
+  - Implements parallel processing for multiple detectors
+
+- [ ] **Enhance `blockchain_integration.py`** - Multi-modal asset management
+  - Add `upload_multi_detection_results()` method
+  - Implement detection-specific asset creation
+  - Create unified query interface for multi-modal results
+  - Add batch processing for multiple detection types
+
+- [ ] **Create `detection_base.py`** - Abstract base class for all detectors
+  - Standardized interface for detection implementations
+  - Common confidence scoring and result formatting
+  - Shared preprocessing and postprocessing utilities
+  - Error handling and retry mechanisms
+
+### 5.3 Detection Modules Implementation
+
+#### 5.3.1 Tattoo Detection (`tattoo_detector.py`)
+
+**CPU Implementation**:
+- Use OpenCV + traditional computer vision techniques
+- Implement skin tone detection with HSV color space
+- Apply edge detection and contour analysis for tattoo patterns
+- Use SIFT/ORB for pattern matching against known tattoo designs
+- Classify tattoo types: tribal, text, portrait, geometric, etc.
+
+**GPU Implementation**:
+- Use YOLOv8 or Detectron2 for tattoo detection
+- Custom training on tattoo datasets (TattooNet, ink detection datasets)
+- Implement tattoo style classification with CNN
+- Use semantic segmentation for precise tattoo boundaries
+
+**Metadata Structure**:
+```json
+{
+  "detectionType": "tattoo",
+  "tattoos": [
+    {
+      "boundingBox": {"x": 150, "y": 200, "w": 80, "h": 120},
+      "bodyLocation": "right_arm",
+      "style": "tribal",
+      "confidence": 0.85,
+      "chipFile": "tattoos/tattoo_001.jpg",
+      "timestamp": "2024-01-15T13:24:05Z",
+      "gpsCoordinates": {"lat": 39.2557, "lon": -76.7112},
+      "frameNumber": 725,
+      "videoTimestamp": "00:00:24.200"
+    }
+  ]
+}
+```
+
+#### 5.3.2 License Plate Detection (`license_plate_detector.py`)
+
+**CPU Implementation**:
+- OpenCV for license plate detection with Haar cascades
+- Tesseract OCR for text extraction
+- Regex validation for license plate formats
+- Geometric correction for skewed plates
+
+**GPU Implementation**:
+- YOLOv8 for license plate detection
+- EasyOCR or PaddleOCR for GPU-accelerated text recognition
+- Deep learning-based text correction models
+- Multi-language support for international plates
+
+**Metadata Structure**:
+```json
+{
+  "detectionType": "license_plate",
+  "plates": [
+    {
+      "boundingBox": {"x": 300, "y": 450, "w": 120, "h": 40},
+      "plateNumber": "ABC-1234",
+      "state": "MD",
+      "confidence": 0.92,
+      "chipFile": "plates/plate_001.jpg",
+      "timestamp": "2024-01-15T13:24:08Z",
+      "gpsCoordinates": {"lat": 39.2557, "lon": -76.7112},
+      "frameNumber": 795,
+      "videoTimestamp": "00:00:26.500"
+    }
+  ]
+}
+```
+
+#### 5.3.3 Vehicle Detection (`vehicle_detector.py`)
+
+**CPU Implementation**:
+- Haar cascade classifiers for vehicle detection
+- Color histogram analysis for dominant vehicle colors
+- Template matching for vehicle type classification
+- Geometric analysis for vehicle orientation
+
+**GPU Implementation**:
+- YOLOv8 for vehicle detection and classification
+- ResNet-based make/model classifier
+- Semantic segmentation for precise vehicle boundaries
+- Advanced color analysis with deep learning
+
+**Metadata Structure**:
+```json
+{
+  "detectionType": "vehicle",
+  "vehicles": [
+    {
+      "boundingBox": {"x": 200, "y": 300, "w": 250, "h": 150},
+      "vehicleType": "sedan",
+      "make": "Toyota",
+      "model": "Camry",
+      "color": "blue",
+      "confidence": 0.78,
+      "chipFile": "vehicles/vehicle_001.jpg",
+      "timestamp": "2024-01-15T13:24:10Z",
+      "gpsCoordinates": {"lat": 39.2557, "lon": -76.7112},
+      "frameNumber": 825,
+      "videoTimestamp": "00:00:27.500"
+    }
+  ]
+}
+```
+
+#### 5.3.4 Audio Transcription (`audio_transcriber.py`)
+
+**CPU Implementation**:
+- Use SpeechRecognition library with Google/Sphinx backends
+- Basic speaker separation with voice activity detection
+- Simple noise reduction with librosa
+- Timestamp alignment with video frames
+
+**GPU Implementation**:
+- OpenAI Whisper for high-quality transcription
+- pyannote.audio for speaker diarization
+- Advanced noise reduction with RNNoise
+- Real-time processing with CUDA acceleration
+
+**Metadata Structure**:
+```json
+{
+  "detectionType": "audio_transcription",
+  "segments": [
+    {
+      "startTime": "00:01:23.450",
+      "endTime": "00:01:27.200",
+      "text": "Suspect is heading north on Main Street",
+      "speaker": "speaker_1",
+      "confidence": 0.95,
+      "language": "en-US",
+      "gpsCoordinates": {"lat": 39.2557, "lon": -76.7112},
+      "startFrameNumber": 2503,
+      "endFrameNumber": 2616
+    }
+  ]
+}
+```
+
+### 5.4 Person Correlation and Profile System
+
+- [ ] **Create `person_correlator.py`** - Cross-modal person association system
+  - Associate detections across different modalities (face + tattoo + voice)
+  - Spatial-temporal correlation analysis
+  - Confidence-based association scoring
+  - Person profile generation and management
+
+- [ ] **Implement `correlation_manager.py`** - Unified person profile management
+  - Generate comprehensive person profiles (person_1, person_2, etc.)
+  - Track all associated detections per person across video timeline
+  - Create person-specific IPFS bundles with all related evidence
+  - Support queryable person profiles through blockchain interface
+
+- [ ] **Person Profile Structure**:
+```json
+{
+  "personId": "person_1",
+  "profileSummary": {
+    "totalAppearances": 15,
+    "timeRange": {"start": "00:00:05.000", "end": "00:03:45.000"},
+    "associatedDetections": {
+      "faces": 10,
+      "tattoos": 2,
+      "vehicles": 1,
+      "audioSegments": 8
+    },
+    "representativeImage": "faces/person_1/chip_001.jpg"
+  },
+  "detectionHistory": [
+    {
+      "timestamp": "2024-01-15T13:24:00Z",
+      "videoTimestamp": "00:00:24.000",
+      "frameNumber": 720,
+      "detectionTypes": ["face"],
+      "gpsCoordinates": {"lat": 39.2557, "lon": -76.7112},
+      "files": ["faces/person_1/chip_001.jpg"]
+    },
+    {
+      "timestamp": "2024-01-15T13:24:05Z",
+      "videoTimestamp": "00:00:24.200",
+      "frameNumber": 725,
+      "detectionTypes": ["face", "tattoo"],
+      "gpsCoordinates": {"lat": 39.2557, "lon": -76.7112},
+      "files": ["faces/person_1/chip_002.jpg", "tattoos/tattoo_1/tattoo_001.jpg"],
+      "correlations": {"tattoo_1": "right_arm_tribal"}
+    }
+  ],
+  "audioProfile": {
+    "speakerId": "speaker_1",
+    "totalSpeechDuration": "00:02:15.000",
+    "keyPhrases": ["suspect", "heading north", "Main Street"],
+    "voiceSegments": [
+      {
+        "startTime": "00:01:23.450",
+        "endTime": "00:01:27.200",
+        "text": "Suspect is heading north on Main Street",
+        "gpsCoordinates": {"lat": 39.2557, "lon": -76.7112}
+      }
+    ]
+  },
+  "vehicleAssociations": [
+    {
+      "vehicleId": "vehicle_1",
+      "plateNumber": "ABC-1234",
+      "associationConfidence": 0.85,
+      "timeRange": {"start": "00:02:30.000", "end": "00:02:45.000"}
+    }
+  ]
+}
+```
+
+### 5.5 Unified Processing Pipeline
+
+- [ ] **Create `unified_processor.py`** - Orchestrates all detection modules
+  - Configurable detector selection (enable/disable specific modules)
+  - Parallel processing with resource management
+  - Progress tracking and status reporting
+  - Error handling and recovery mechanisms
+
+- [ ] **Implement `batch_multi_detector.py`** - Batch processing for multiple files
+  - Queue management for large video sets
+  - Priority-based processing
+  - Resume capability for interrupted processing
+  - Resource monitoring and optimization
+
+- [ ] **Create `detection_config.py`** - Configuration management
+  - Detector-specific configuration parameters
+  - CPU/GPU resource allocation settings
+  - Confidence threshold tuning
+  - Output format customization
+
+### 5.6 Integration and Optimization
+
+- [ ] **Enhance `video_processor.py`** - Multi-modal video processing
+  - Single-pass video analysis for all detectors
+  - Shared frame extraction and preprocessing
+  - Memory-efficient processing for large videos
+  - Temporal coherence tracking across frames
+  - GPS coordinate extraction from video overlay
+
+- [ ] **Create `detection_merger.py`** - Combine results from multiple detectors
+  - Spatial correlation between detections
+  - Temporal tracking across video frames
+  - Cross-modal validation (e.g., face + tattoo association)
+  - Confidence score aggregation
+  - Person profile correlation and updating
+
+- [ ] **Implement `resource_manager.py`** - GPU/CPU resource optimization
+  - Dynamic resource allocation based on available hardware
+  - Batch size optimization for GPU processing
+  - Memory management for large video files
+  - Fallback mechanisms for resource constraints
+
+### 5.7 Person Profile IPFS Integration
+
+- [ ] **Create `profile_bundler.py`** - Person-specific evidence packaging
+  - Generate individual IPFS bundles per person (person_1_bundle.zip)
+  - Include all associated detection chips and metadata
+  - Create person profile summary files
+  - Support incremental updates to person bundles
+
+- [ ] **Implement `profile_query_interface.py`** - Person profile access system
+  - Blockchain-queryable person profile endpoints
+  - Support queries like "show me all evidence for person_1"
+  - Timeline-based evidence browsing
+  - Cross-video person tracking and correlation
+
+### 5.8 Blockchain Integration Enhancements
+
+- [ ] **Multi-Modal Asset Strategy**
+  - Each detection type creates separate derived asset
+  - Consistent parent-child relationships
+  - Unified topic structure for efficient querying
+  - Batch upload optimization for multiple detection results
+
+- [ ] **Enhanced Metadata Standards**
+  - Standardized confidence scoring across detection types
+  - Consistent timestamp and coordinate formats
+  - Unified file naming and organization patterns
+  - Cross-detection correlation metadata
+
+- [ ] **Query Interface Improvements**
+  - Multi-modal search capabilities
+  - Detection-type filtering
+  - Temporal range queries
+  - Confidence threshold filtering
+
+### 5.9 Testing and Validation
+
+- [ ] **Create `test_multi_detection.py`** - Comprehensive test suite
+  - Unit tests for each detection module
+  - Integration tests for unified pipeline
+  - Performance benchmarking
+  - Blockchain integration validation
+  - Person correlation accuracy testing
+
+- [ ] **Implement `validation_dataset.py`** - Test data management
+  - Curated test datasets for each detection type
+  - Ground truth labeling for accuracy validation
+  - Performance metrics collection
+  - Regression testing automation
+  - Person profile validation testing
+
+- [ ] **Create `test_person_correlation.py`** - Person profile testing
+  - Cross-modal association accuracy tests
+  - Person profile completeness validation
+  - IPFS bundle integrity testing
+  - Query interface performance testing
+
+### 5.10 Performance Optimization
+
+- [ ] **GPU Optimization**
+  - CUDA kernel optimization for batch processing
+  - Memory pool management for large datasets
+  - Multi-GPU support for parallel processing
+  - Mixed precision training for faster inference
+
+- [ ] **CPU Optimization**
+  - Multi-threading for parallel detection
+  - Memory-mapped file processing
+  - Cache optimization for repeated operations
+  - Vectorized operations with NumPy
+
+- [ ] **Person Profile Optimization**
+  - Efficient correlation algorithm implementation
+  - Incremental profile updates
+  - Optimized IPFS bundle generation
+  - Fast person profile queries
+
+### 5.11 Deployment and Monitoring
+
+- [ ] **Create `deployment_config.py`** - Environment-specific configuration
+  - CPU-only deployment for resource-constrained environments
+  - GPU-enabled deployment for high-performance scenarios
+  - Cloud deployment configurations
+  - Edge device optimization
+
+- [ ] **Implement `monitoring_dashboard.py`** - Real-time monitoring
+  - Processing speed metrics
+  - Detection accuracy tracking
+  - Resource utilization monitoring
+  - Error rate analysis
+  - Person correlation accuracy monitoring
+
+### 5.12 Documentation and Examples
+
+- [ ] **Multi-Detection API Documentation**
+  - Detailed API reference for each detection module
+  - Configuration examples for different scenarios
+  - Performance tuning guidelines
+  - Troubleshooting guide
+  - Person profile system documentation
+
+- [ ] **Example Implementations**
+  - Sample code for each detection type
+  - End-to-end processing examples
+  - Blockchain integration demonstrations
+  - Performance optimization examples
+  - Person profile query examples
 
 ---
 
