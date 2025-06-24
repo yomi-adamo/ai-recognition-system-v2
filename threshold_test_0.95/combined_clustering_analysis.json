@@ -1,12 +1,20 @@
 {
-  "timestamp": "2025-06-23T00:40:12.147419",
-  "total_clusters": 1,
+  "timestamp": "2025-06-23T14:06:03.692057",
+  "total_clusters": 3,
   "cluster_distribution": {
-    "person_26": 1
+    "person_3": 1,
+    "person_1": 1,
+    "person_2": 1
   },
   "cluster_sources": {
-    "person_26": [
-      "lady.jpg"
+    "person_1": [
+      "group.jpg"
+    ],
+    "person_2": [
+      "group.jpg"
+    ],
+    "person_3": [
+      "group.jpg"
     ]
   },
   "multi_image_clusters": [],

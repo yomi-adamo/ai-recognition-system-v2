@@ -100,7 +100,7 @@ def main():
         elif args.recognize:
             enable_recognition = True
             
-        processor = VideoProcessor(enable_recognition=enable_recognition)
+        processor = VideoProcessor(enable_clustering=enable_recognition)
         file_handler = FileHandler(args.output_dir)
         formatter = JSONFormatter()
         
@@ -169,9 +169,9 @@ def main():
                 formatter.save_to_file(timeline_results, timeline_path)
             
             # Create summary report
-            stats = result['processing_stats']
+            stats = result.get('metadata', {}).get('processing_stats', {})
             stats['processing_time_seconds'] = round(processing_time, 2)
-            stats['faces_per_second'] = round(stats['total_face_detections'] / processing_time, 2)
+            stats['faces_per_second'] = round(stats.get('total_face_detections', 0) / processing_time, 2) if processing_time > 0 else 0
             
             summary = {
                 'video_file': video_path.name,
@@ -195,22 +195,20 @@ def main():
             print(f"Video Processing Complete")
             print(f"{'='*60}")
             print(f"Video: {video_path.name}")
-            print(f"Duration: {stats['duration_seconds']:.1f} seconds")
-            print(f"Total frames: {stats['total_frames_in_video']:,}")
-            print(f"Frames processed: {stats['frames_processed']:,}")
-            print(f"Frames with faces: {stats['frames_with_faces']:,}")
-            print(f"Total face detections: {stats['total_face_detections']:,}")
-            print(f"Unique faces found: {stats['unique_faces']:,}")
+            print(f"Duration: {stats.get('duration_seconds', 0):.1f} seconds")
+            print(f"Total frames: {stats.get('total_frames_in_video', 0):,}")
+            print(f"Frames processed: {stats.get('frames_processed', 0):,}")
+            print(f"Frames with faces: {stats.get('frames_with_faces', 0):,}")
+            print(f"Total face detections: {stats.get('total_face_detections', 0):,}")
+            print(f"Unique faces found: {stats.get('clusters_assigned', 0):,}")
             
-            # Show recognition stats if enabled
-            if stats.get('recognition_enabled', False):
-                recognized = stats.get('recognized_identities', [])
-                unknown = stats.get('unknown_faces', 0)
-                print(f"Recognized identities: {len(recognized)} ({', '.join(recognized[:5])}{' ...' if len(recognized) > 5 else ''})")
-                print(f"Unknown faces: {unknown}")
+            # Show clustering stats if enabled
+            if stats.get('clustering_enabled', False):
+                print(f"Clustering enabled: Yes")
+                print(f"Clusters assigned: {stats.get('clusters_assigned', 0)}")
             
             print(f"Processing time: {processing_time:.1f} seconds")
-            print(f"Speed: {stats['faces_per_second']:.1f} faces/second")
+            print(f"Speed: {stats.get('faces_per_second', 0):.1f} faces/second")
             print()
             print(f"Output directory: {output_dir}")
             print(f"Face results: {json_output_path}")

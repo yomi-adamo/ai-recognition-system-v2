@@ -309,3 +309,15 @@ Help me plan a complete redesign of the clustering system:
 - Emphasize asset tree design (original → chip → cluster)
 
 Do NOT write code yet — just return a complete plan with pros/cons and alternatives where helpful.
+
+## GPS Coordinate extraction
+In facial-vision there needs to be a change. I have noticed that on the AXIS W120 body camera, when I export the mp4 file, the GPS   │
+│   data isnt embed into the file, but they provide notes that contain the coordinates, teh notes file I am referring to is              │
+│   facial-vision/data/input/Videos/location_test_metadata.txt which is the metadata for location_test.mp4. I dont want you to directly  │
+│   take the coordinates from the txt file and add it to the chip metadata because we dont know what from the coordinates are            │
+│   associated with, so this is my plan. There is overlay on the location_test.mp4 and the coordinates are toward the bottom right of    │
+│   the screen, so when a face is detected I want the GPS coordinates that are in the bottom left to be read and I want that to be put   │
+│   as as the gps metadata for that chip. Once this is fully functional i want you to commit this to my github.  
+
+## Commit significant changes
+Once you verify that a change you have made works, you should commit the changes to my github https://github.com/yomi-adamo/ai-recognition-system-v2.

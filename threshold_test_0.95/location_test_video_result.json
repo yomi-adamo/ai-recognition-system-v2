@@ -1,0 +1,84 @@
+{
+  "file": "data/input/Videos/location_test.mp4",
+  "type": "video",
+  "name": "location_test",
+  "author": "facial-vision-system",
+  "timestamp": "2025-06-23T14:16:23.491699",
+  "parentId": "5b31aee2-a75b-40ea-ad57-01b29e81d837",
+  "metadata": {
+    "source_metadata": {
+      "filename": "location_test.mp4",
+      "file_path": "/home/adamoyomi/code/facial-vision/data/input/Videos/location_test.mp4",
+      "file_size": 61327340,
+      "creation_time": "2025-06-23T14:16:23.491699",
+      "modification_time": "2025-06-23T14:16:23.491699",
+      "timestamp": "2025-06-23T14:16:23.491699",
+      "video": {
+        "fps": 30.122289744166853,
+        "frame_count": 803,
+        "width": 1920,
+        "height": 1080,
+        "duration_seconds": 26.658,
+        "codec": "h264"
+      }
+    },
+    "processing_stats": {
+      "total_frames_in_video": 803,
+      "frames_processed": 27,
+      "frames_with_faces": 1,
+      "total_face_detections": 1,
+      "clusters_assigned": 1,
+      "clustering_enabled": true,
+      "chips_generated": 1,
+      "fps": 30.122289744166853,
+      "duration_seconds": 26.658,
+      "frame_interval": 30
+    },
+    "video_info": {
+      "fps": 30.122289744166853,
+      "duration_seconds": 26.658,
+      "total_frames": 803,
+      "resolution": "1920x1080"
+    },
+    "chips": [
+      {
+        "file": "threshold_test_0.95/chips/person_4/chip_001.jpg",
+        "type": "image",
+        "name": "chip_001",
+        "author": "facial-vision-system",
+        "timestamp": "2025-06-23T14:16:23.491699",
+        "clusterId": "person_4",
+        "sourceFile": "data/input/Videos/location_test.mp4",
+        "face_bounds": {
+          "x": 759,
+          "y": 194,
+          "w": 462,
+          "h": 463
+        },
+        "confidence": 0.9025,
+        "topics": [
+          "face_detected",
+          "clustered"
+        ],
+        "parentId": "5b31aee2-a75b-40ea-ad57-01b29e81d837",
+        "frameNumber": 720,
+        "videoTimestamp": "00:00:23.903",
+        "video_metadata": {
+          "fps": 30.122289744166853,
+          "duration_seconds": 26.658,
+          "resolution": "1920x1080"
+        },
+        "landmarks": null,
+        "face_area": 213906,
+        "face_center": [
+          990,
+          425
+        ]
+      }
+    ]
+  },
+  "topics": [
+    "face_detected",
+    "video_analysis"
+  ]
+}

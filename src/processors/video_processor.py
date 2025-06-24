@@ -1,3 +1,4 @@
+import json
 import time
 import uuid
 from datetime import datetime, timedelta
@@ -232,6 +233,20 @@ class VideoProcessor(MediaProcessorBase):
             output_dir = Path(output_dir)
             output_dir.mkdir(parents=True, exist_ok=True)
 
+        # Detect GPS overlay region once for the video
+        gps_roi = None
+        if self.metadata_extractor.gps_ocr_extractor and frame_detections:
+            # Use first frame to detect GPS overlay region
+            first_frame = frame_detections[0]["frame"]
+            gps_roi = self.metadata_extractor.gps_ocr_extractor.detect_gps_overlay_region(first_frame)
+            if gps_roi:
+                logger.info(f"GPS overlay region detected at: {gps_roi}")
+            else:
+                # Default to bottom right if not detected
+                height, width = first_frame.shape[:2]
+                gps_roi = (int(width * 0.6), int(height * 0.8), int(width * 0.4), int(height * 0.2))
+                logger.info(f"Using default GPS overlay region: {gps_roi}")
+        
         # Generate chips and metadata for each detection
         chips_metadata = []
         cluster_chip_counts = {}  # Track chip count per cluster for clean naming
@@ -275,7 +290,9 @@ class VideoProcessor(MediaProcessorBase):
                     frame_number=frame_data["frame_number"],
                     video_timestamp=frame_data["video_timestamp"],
                     parent_id=parent_id,
-                    frame_specific_gps=True  # Enable frame-specific GPS extraction
+                    frame_specific_gps=True,  # Enable frame-specific GPS extraction
+                    frame=frame,  # Pass the frame for OCR
+                    gps_roi=gps_roi  # Pass the detected GPS region
                 )
 
                 # Add detection-specific data
@@ -503,3 +520,68 @@ class VideoProcessor(MediaProcessorBase):
             
         finally:
             cap.release()
+    
+    def get_unique_faces_json(self, result: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Extract unique faces from processing result
+        
+        Args:
+            result: Processing result dictionary
+            
+        Returns:
+            Dictionary with unique faces
+        """
+        chips = result.get('metadata', {}).get('chips', [])
+        
+        # Group by cluster ID
+        unique_faces = {}
+        for chip in chips:
+            cluster_id = chip.get('clusterId', 'unknown')
+            if cluster_id not in unique_faces:
+                unique_faces[cluster_id] = {
+                    'clusterId': cluster_id,
+                    'count': 0,
+                    'chips': []
+                }
+            unique_faces[cluster_id]['count'] += 1
+            unique_faces[cluster_id]['chips'].append(chip)
+        
+        return {
+            'file': result.get('file'),
+            'processed_at': datetime.now().isoformat(),
+            'total_unique_faces': len(unique_faces),
+            'faces': list(unique_faces.values())
+        }
+    
+    def create_timeline_json(self, result: Dict[str, Any]) -> Dict[str, Any]:
+        """
+        Create timeline view of face detections
+        
+        Args:
+            result: Processing result dictionary
+            
+        Returns:
+            Dictionary with timeline of detections
+        """
+        chips = result.get('metadata', {}).get('chips', [])
+        
+        # Sort by frame number
+        timeline_entries = []
+        for chip in chips:
+            timeline_entries.append({
+                'frameNumber': chip.get('frameNumber', 0),
+                'videoTimestamp': chip.get('videoTimestamp', '00:00:00.000'),
+                'clusterId': chip.get('clusterId', 'unknown'),
+                'confidence': chip.get('confidence', 0.0),
+                'gps': chip.get('gps', None),
+                'chipPath': chip.get('file', '')
+            })
+        
+        timeline_entries.sort(key=lambda x: x['frameNumber'])
+        
+        return {
+            'file': result.get('file'),
+            'processed_at': datetime.now().isoformat(),
+            'total_detections': len(timeline_entries),
+            'timeline': timeline_entries
+        }

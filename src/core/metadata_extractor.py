@@ -11,6 +11,7 @@ from PIL import Image
 from PIL.ExifTags import GPSTAGS, TAGS
 
 from src.utils.logger import get_facial_vision_logger, timing_decorator
+from src.core.gps_ocr_extractor import GPSOCRExtractor
 
 # Try to import ffprobe for enhanced video metadata
 try:
@@ -53,6 +54,13 @@ class MetadataExtractor:
         
         # GPS track cache for videos
         self._gps_track_cache = {}
+        
+        # Initialize GPS OCR extractor
+        self.gps_ocr_extractor = None
+        try:
+            self.gps_ocr_extractor = GPSOCRExtractor()
+        except Exception as e:
+            logger.warning(f"Could not initialize GPS OCR extractor: {e}")
 
     @timing_decorator
     def extract_metadata(self, file_path: Union[str, Path]) -> Dict[str, Any]:
@@ -744,7 +752,9 @@ class MetadataExtractor:
         frame_number: Optional[int] = None,
         video_timestamp: Optional[float] = None,
         parent_id: Optional[str] = None,
-        frame_specific_gps: bool = True
+        frame_specific_gps: bool = True,
+        frame: Optional[np.ndarray] = None,
+        gps_roi: Optional[Tuple[int, int, int, int]] = None
     ) -> Dict[str, Any]:
         """
         Create comprehensive metadata for a face chip
@@ -759,6 +769,8 @@ class MetadataExtractor:
             video_timestamp: Timestamp within video in seconds
             parent_id: Blockchain asset ID of parent file
             frame_specific_gps: Whether to extract GPS for specific video timestamp
+            frame: Video frame for OCR-based GPS extraction
+            gps_roi: Region of interest for GPS overlay (x, y, width, height)
             
         Returns:
             Comprehensive metadata dictionary
@@ -805,9 +817,21 @@ class MetadataExtractor:
         if (frame_specific_gps and video_timestamp is not None and 
             source_path.suffix.lower() in ['.mp4', '.avi', '.mov', '.mkv', '.webm']):
             try:
-                gps_info = self.get_gps_at_timestamp(source_path, video_timestamp)
-                if gps_info:
-                    logger.debug(f"Using frame-specific GPS for timestamp {video_timestamp}s: {gps_info}")
+                # First try OCR extraction if frame is provided
+                if frame is not None and self.gps_ocr_extractor:
+                    gps_info = self.extract_gps_from_frame_overlay(frame, gps_roi)
+                    if gps_info:
+                        logger.info(f"Using OCR-extracted GPS for timestamp {video_timestamp}s: {gps_info}")
+                    else:
+                        # Fallback to embedded GPS track
+                        gps_info = self.get_gps_at_timestamp(source_path, video_timestamp)
+                        if gps_info:
+                            logger.debug(f"Using embedded GPS track for timestamp {video_timestamp}s: {gps_info}")
+                else:
+                    # No frame provided, use embedded GPS track
+                    gps_info = self.get_gps_at_timestamp(source_path, video_timestamp)
+                    if gps_info:
+                        logger.debug(f"Using frame-specific GPS for timestamp {video_timestamp}s: {gps_info}")
             except Exception as e:
                 logger.debug(f"Failed to get frame-specific GPS: {e}")
         
@@ -848,3 +872,30 @@ class MetadataExtractor:
         metadata = self.extract_metadata(file_path)
         device_info = metadata.get('device')
         return device_info.get('id') if device_info else None
+    
+    def extract_gps_from_frame_overlay(self, frame: np.ndarray, roi: Optional[Tuple[int, int, int, int]] = None) -> Optional[Dict[str, float]]:
+        """
+        Extract GPS coordinates from frame overlay using OCR
+        
+        Args:
+            frame: Video frame as numpy array
+            roi: Region of interest (x, y, width, height) for GPS overlay
+            
+        Returns:
+            Dictionary with GPS coordinates or None if not found
+        """
+        if not self.gps_ocr_extractor:
+            return None
+            
+        try:
+            # Extract GPS using OCR
+            gps_coords = self.gps_ocr_extractor.extract_gps_from_frame(frame, roi)
+            
+            if gps_coords:
+                logger.debug(f"Extracted GPS from frame overlay: {gps_coords}")
+                
+            return gps_coords
+            
+        except Exception as e:
+            logger.error(f"Error extracting GPS from frame overlay: {e}")
+            return None
