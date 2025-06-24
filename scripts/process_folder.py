@@ -56,9 +56,8 @@ def main():
         
         # Initialize BatchProcessor
         batch_processor = BatchProcessor(
-            workers=args.workers,
-            enable_recognition=not args.no_recognition,
-            resume_file=args.resume_file if args.resume_file else None
+            max_workers=args.workers,
+            enable_clustering=not args.no_recognition
         )
         
         # Progress callback
@@ -67,12 +66,10 @@ def main():
         
         # Process folder
         logger.info(f"Starting batch processing of {folder_path}")
-        report = batch_processor.process_folder(
-            folder_path=folder_path,
+        report = batch_processor.process_directory(
+            input_dir=folder_path,
             output_dir=args.output_dir,
             recursive=args.recursive,
-            extensions=args.extensions,
-            save_incrementally=True,
             progress_callback=progress_callback
         )
         

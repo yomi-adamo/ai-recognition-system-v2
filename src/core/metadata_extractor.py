@@ -873,7 +873,7 @@ class MetadataExtractor:
         device_info = metadata.get('device')
         return device_info.get('id') if device_info else None
     
-    def extract_gps_from_frame_overlay(self, frame: np.ndarray, roi: Optional[Tuple[int, int, int, int]] = None) -> Optional[Dict[str, float]]:
+    def extract_gps_from_frame_overlay(self, frame: np.ndarray, roi: Optional[Tuple[int, int, int, int]] = None) -> Optional[Dict[str, Any]]:
         """
         Extract GPS coordinates from frame overlay using OCR
         
@@ -882,7 +882,7 @@ class MetadataExtractor:
             roi: Region of interest (x, y, width, height) for GPS overlay
             
         Returns:
-            Dictionary with GPS coordinates or None if not found
+            Dictionary with GPS coordinates, status message, or None if not found
         """
         if not self.gps_ocr_extractor:
             return None
@@ -892,7 +892,10 @@ class MetadataExtractor:
             gps_coords = self.gps_ocr_extractor.extract_gps_from_frame(frame, roi)
             
             if gps_coords:
-                logger.debug(f"Extracted GPS from frame overlay: {gps_coords}")
+                if gps_coords.get('status') == 'no_location_available':
+                    logger.info(f"GPS overlay shows no location data: {gps_coords.get('message')}")
+                else:
+                    logger.debug(f"Extracted GPS from frame overlay: {gps_coords}")
                 
             return gps_coords
             

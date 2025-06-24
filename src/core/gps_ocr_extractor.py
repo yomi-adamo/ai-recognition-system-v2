@@ -78,7 +78,7 @@ class GPSOCRExtractor:
         else:
             logger.error(f"OCR backend '{self.ocr_backend}' is not available")
             
-    def extract_gps_from_frame(self, frame: np.ndarray, roi: Optional[Tuple[int, int, int, int]] = None) -> Optional[Dict[str, float]]:
+    def extract_gps_from_frame(self, frame: np.ndarray, roi: Optional[Tuple[int, int, int, int]] = None) -> Optional[Dict[str, Any]]:
         """
         Extract GPS coordinates from a video frame
         
@@ -186,7 +186,7 @@ class GPSOCRExtractor:
         
         return text.strip()
     
-    def _parse_gps_coordinates(self, text: str) -> Optional[Dict[str, float]]:
+    def _parse_gps_coordinates(self, text: str) -> Optional[Dict[str, Any]]:
         """
         Parse GPS coordinates from extracted text
         
@@ -194,7 +194,7 @@ class GPSOCRExtractor:
             text: Extracted text from OCR
             
         Returns:
-            Dictionary with lat/lon or None if not found
+            Dictionary with lat/lon, status message, or None if not found
         """
         if not text:
             return None
@@ -205,7 +205,25 @@ class GPSOCRExtractor:
         
         logger.debug(f"OCR extracted text: {text}")
         
-        # Try each GPS pattern
+        # Check for "no location data" messages first
+        no_location_patterns = [
+            r'no\s+location\s+data',
+            r'location\s+unavailable', 
+            r'gps\s+disabled',
+            r'no\s+gps\s+signal',
+            r'no\s+gps\s+data',
+            r'gps\s+unavailable',
+            r'location\s+not\s+available',
+            r'no\s+position\s+data',
+            r'position\s+unavailable'
+        ]
+        
+        for pattern in no_location_patterns:
+            if re.search(pattern, text, re.IGNORECASE):
+                logger.info("GPS overlay indicates no location data available")
+                return {"status": "no_location_available", "message": "GPS overlay shows no location data"}
+        
+        # Try each GPS coordinate pattern
         for pattern in self.gps_patterns:
             match = re.search(pattern, text)
             if match:

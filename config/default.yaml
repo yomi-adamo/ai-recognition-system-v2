@@ -15,8 +15,8 @@ clustering:
   similarity_threshold: 0.95
 face_detection:
   backend: face_recognition
-  confidence_threshold: 0.7
-  min_face_size: 100
+  confidence_threshold: 0.5
+  min_face_size: 40
   model: hog
   mtcnn_scale_factor: 0.709
   mtcnn_thresholds:
@@ -25,8 +25,14 @@ face_detection:
   - 0.7
   opencv_min_neighbors: 3
   opencv_scale_factor: 1.1
-  tolerance: 0.6
-  upsampling: 1
+  tolerance: 0.7
+  upsampling: 2
+
+chip_quality:
+  min_blur_score: 200.0      # Increased from 100 (filters blurry false positives)
+  min_quality_score: 0.7     # Increased from 0.5 (requires 70% overall quality)  
+  min_contrast: 15           # Increased from 10 (requires better contrast)
+
 face_recognition:
   database_path: data/face_db/faces.pkl
   encoding_jitter: 1

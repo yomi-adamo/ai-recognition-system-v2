@@ -1,0 +1,20 @@
+{
+  "version": "1.0",
+  "source_file": "data/input/Photos/yomi5.jpg",
+  "created": "2025-06-23T19:44:25.995444Z",
+  "clusters": {
+    "person_2": [
+      {
+        "file": "person_2/chip_001.jpg",
+        "original_path": "test_output/person_2/chip_005.jpg",
+        "confidence": 0.9025,
+        "face_bounds": {
+          "x": 936,
+          "y": 724,
+          "w": 959,
+          "h": 958
+        }
+      }
+    ]
+  }
+}

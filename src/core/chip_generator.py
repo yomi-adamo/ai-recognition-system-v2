@@ -59,14 +59,15 @@ class ChipGenerator:
         self.use_base64 = output_config.get("use_base64", True)
         self.enable_quality_checks = enable_quality_checks
 
-        # Quality thresholds
+        # Quality thresholds - load from config or use defaults
+        quality_config = config.config.get("chip_quality", {})
         self.quality_thresholds = {
-            "min_blur_score": 100.0,  # Laplacian variance threshold
+            "min_blur_score": quality_config.get("min_blur_score", 100.0),  # Laplacian variance threshold
             "min_resolution": 64,  # Minimum face size
             "min_brightness": 20,  # Minimum average brightness
             "max_brightness": 235,  # Maximum average brightness
-            "min_contrast": 10,  # Minimum standard deviation
-            "min_quality_score": 0.5,  # Overall quality threshold
+            "min_contrast": quality_config.get("min_contrast", 10),  # Minimum standard deviation
+            "min_quality_score": quality_config.get("min_quality_score", 0.5),  # Overall quality threshold
         }
 
         self.file_handler = FileHandler()
